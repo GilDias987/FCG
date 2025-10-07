@@ -1,6 +1,8 @@
 ﻿using FCG.ApplicationCore.Dto.Autenticacao.GrupoUsuario;
+using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Interface.Service;
+using FCG.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,21 @@ namespace FCG.ApplicationCore.Service
             _usuarioRepository = usuarioRepository;
         }
 
-        public Task CadastrarAsync(AddGrupoUsuarioDto addGrupoUsuarioDto)
+        public async Task CadastrarAsync(AddUsuarioDto addUsuarioDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (_usuarioRepository.VerificarSeExisteUsuarioEmail(addUsuarioDto.Email))
+                    throw new Exception("Já existe um usuário com esse e-mail.");
+
+                var usuario = new Usuario(addUsuarioDto.Nome, addUsuarioDto.Email, addUsuarioDto.Senha, addUsuarioDto.GrupoUsuarioId);
+
+                var Usuario = await _usuarioRepository.AddAsync(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao cadastrar usuário. " + ex.Message);
+            }
         }
 
         public Task EditarAsync(int id, AddGrupoUsuarioDto addGrupoUsuarioDto)

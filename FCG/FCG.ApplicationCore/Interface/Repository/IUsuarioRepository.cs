@@ -10,5 +10,6 @@ namespace FCG.ApplicationCore.Interface.Repository
 {
     public interface IUsuarioRepository : IRepository<Usuario>
     {
+        public bool VerificarSeExisteUsuarioEmail(string email);
     }
 }

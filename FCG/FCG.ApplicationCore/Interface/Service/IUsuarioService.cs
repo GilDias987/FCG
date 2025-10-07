@@ -1,4 +1,5 @@
 ﻿using FCG.ApplicationCore.Dto.Autenticacao.GrupoUsuario;
+using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace FCG.ApplicationCore.Interface.Service
 {
     public interface IUsuarioService
     {
-        public Task CadastrarAsync(AddGrupoUsuarioDto addGrupoUsuarioDto);
+        public Task CadastrarAsync(AddUsuarioDto addUsuarioDto);
         public Task EditarAsync(int id, AddGrupoUsuarioDto addGrupoUsuarioDto);
         public Task ExcluirAsync(int id);
     }

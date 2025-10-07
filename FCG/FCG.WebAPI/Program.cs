@@ -32,6 +32,7 @@ builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IUsuarioJogoRepository, UsuarioJogoRepository>();
 
 builder.Services.AddScoped<IGrupoUsuarioService , GrupoUsuarioService> ();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 var app = builder.Build();
 
