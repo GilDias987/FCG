@@ -1,5 +1,6 @@
 ﻿using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entity;
+using FCG.Domain.ValueObjects;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository.Base;
 using System;
@@ -14,6 +15,12 @@ namespace FCG.Infrastructure.Repository
     {
         public UsuarioRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public bool VerificarSeExisteUsuarioEmail(string email)
+        {
+            var grupo = _dbSet.FirstOrDefault(g => g.Email.ToLower() == email.ToLower());
+            return grupo != null ? true : false;
         }
     }
 }

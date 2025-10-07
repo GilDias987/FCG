@@ -20,11 +20,11 @@ namespace FCG.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdicionarGrupoUsuario([FromBody] AddGrupoUsuarioDto GrupoUsuario)
+        public async Task<IActionResult> AdicionarGrupoUsuario([FromBody] AddGrupoUsuarioDto addGrupoUsuarioDto)
         {
             try
             {
-                await _grupoUsuarioService.CadastrarAsync(GrupoUsuario);
+                await _grupoUsuarioService.CadastrarAsync(addGrupoUsuarioDto);
                 return Ok("Grupo de Usuario cadastrado com sucesso");
             }
             catch (Exception ex)
@@ -36,11 +36,11 @@ namespace FCG.WebAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> EditarGrupoUsuario(int id, [FromBody] AddGrupoUsuarioDto GrupoUsuario)
+        public async Task<ActionResult> EditarGrupoUsuario(int id, [FromBody] AddGrupoUsuarioDto addGrupoUsuarioDto)
         {
             try
             {
-                await _grupoUsuarioService.EditarAsync(id, GrupoUsuario);
+                await _grupoUsuarioService.EditarAsync(id, addGrupoUsuarioDto);
                 return Ok("Grupo de Usuario editado com sucesso");
             }
             catch (Exception ex)

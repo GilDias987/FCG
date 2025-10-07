@@ -17,5 +17,7 @@ namespace FCG.ApplicationCore.Dto.Autenticacao.Usuario
         public required string Email { get; set; }
         [Required(ErrorMessage = "O senha do usuário é obrigatório", AllowEmptyStrings = false)]
         public required string Senha { get; set; }
+        [Required(ErrorMessage = "O grupo usuário obrigatório", AllowEmptyStrings = false)]
+        public int GrupoUsuarioId { get; set; }
     }
 }
