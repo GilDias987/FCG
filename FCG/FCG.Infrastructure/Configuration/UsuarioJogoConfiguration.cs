@@ -15,7 +15,7 @@ namespace FCG.Infrastructure.Configuration
         {
             builder.ToTable("TB_USUARIO_JOGO");
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().HasColumnName("ISN_USUARIO_JOGO").UseIdentityColumn();
+            builder.Property(p => p.Id).HasColumnType("INT").HasColumnName("ISN_USUARIO_JOGO").UseIdentityColumn();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
             builder.Property(p => p.JogoId).HasColumnType("INT").HasColumnName("ISN_JOGO").IsRequired();

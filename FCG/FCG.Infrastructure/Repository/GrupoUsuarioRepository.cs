@@ -1,4 +1,4 @@
-﻿using FCG.ApplicationCore.Repository;
+﻿using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entity;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository.Base;
@@ -14,6 +14,12 @@ namespace FCG.Infrastructure.Repository
     {
         public GrupoUsuarioRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public bool VerificarSeExisteGrupo(string nomeGrupo)
+        {
+            var grupo = _dbSet.FirstOrDefault(g => g.Nome.ToLower() == nomeGrupo.ToLower());
+            return grupo != null ? true : false;
         }
     }
 }

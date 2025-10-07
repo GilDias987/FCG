@@ -1,7 +1,11 @@
-using FCG.ApplicationCore.Repository;
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.ApplicationCore.Interface.Service;
+using FCG.ApplicationCore.Service;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +31,8 @@ builder.Services.AddScoped<IPlataformaRepository, PlataformaRepository>();
 builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IUsuarioJogoRepository, UsuarioJogoRepository>();
 
+builder.Services.AddScoped<IGrupoUsuarioService , GrupoUsuarioService> ();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,6 +52,7 @@ if (app.Environment.IsDevelopment())
 
     app.MapScalarApiReference();
 }
+
 
 app.UseHttpsRedirection();
 

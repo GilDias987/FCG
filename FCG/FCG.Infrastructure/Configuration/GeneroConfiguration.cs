@@ -15,7 +15,7 @@ namespace FCG.Infrastructure.Configuration
         {
             builder.ToTable("TB_GENERO");
             builder.HasKey(g => g.Id);
-            builder.Property(g => g.Id).HasColumnType("INT").ValueGeneratedNever().HasColumnName("ISN_GENERO").UseIdentityColumn();
+            builder.Property(g => g.Id).HasColumnType("INT").HasColumnName("ISN_GENERO").UseIdentityColumn();
             builder.Property(g => g.Titulo).HasColumnType("VARCHAR(500)").HasColumnName("DSC_TITULO").IsRequired();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();

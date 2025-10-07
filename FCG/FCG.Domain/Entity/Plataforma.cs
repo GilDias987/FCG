@@ -9,7 +9,9 @@ namespace FCG.Domain.Entity
 {
     public class Plataforma : EntityBase
     {
+        #region Propriedades Base
         public required string Titulo { get; set; }
+        #endregion
 
         #region Propriedades Navegacao
         public ICollection<Jogo> Jogos { get; set; }

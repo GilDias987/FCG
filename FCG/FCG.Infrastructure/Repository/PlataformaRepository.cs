@@ -1,4 +1,4 @@
-﻿using FCG.ApplicationCore.Repository;
+﻿using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entity;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository.Base;

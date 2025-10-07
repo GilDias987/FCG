@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FCG.ApplicationCore.Repository.Base
+namespace FCG.ApplicationCore.Interface.Repository.Base
 {
     public interface IRepository<T> where T : EntityBase
     {

@@ -19,10 +19,8 @@ namespace FCG.Domain.Entity
         #region Propriedades de Navegação
         public int GeneroId { get; set; }
         public Genero Genero { get; set; }
-
         public int PlataformaId { get; set; }
         public Plataforma Plataforma { get; set; }
-
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
     }

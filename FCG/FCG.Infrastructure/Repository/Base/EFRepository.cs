@@ -1,4 +1,4 @@
-﻿using FCG.ApplicationCore.Repository.Base;
+﻿using FCG.ApplicationCore.Interface.Repository.Base;
 using FCG.Domain.Entity.Abstract;
 using FCG.Infrastructure.Contexto;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +37,7 @@ namespace FCG.Infrastructure.Repository.Base
         {
             entidade.DataCriacao = DateTime.Now;
             entidade.DataAtualizacao = DateTime.Now;
-            _dbSet.Add(entidade);
+            await _dbSet.AddAsync(entidade);
             await _context.SaveChangesAsync();
             return entidade;
         }
@@ -50,7 +50,8 @@ namespace FCG.Infrastructure.Repository.Base
 
         public async Task DeleteAsync(int id)
         {
-            _dbSet.Remove(GetById(id));
+            var entidade = await GetByIdAsync(id);
+            _dbSet.Remove(entidade);
             await _context.SaveChangesAsync();
         }
 
@@ -64,7 +65,7 @@ namespace FCG.Infrastructure.Repository.Base
         public async Task UpdateAsync(T entidade)
         {
             entidade.DataAtualizacao = DateTime.Now;
-            _dbSet.Update(entidade);
+            _context.Entry(entidade).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
     }
