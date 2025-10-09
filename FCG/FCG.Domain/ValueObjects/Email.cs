@@ -15,30 +15,20 @@ namespace FCG.Domain.ValueObjects
         {
             ValidarEmail(endereco);
             ValidarEmailDominio(endereco);
-            Endereco = endereco;
+            Endereco = endereco.Trim();
         }
 
         private static void ValidarEmailDominio(string value)
         {
             if (!Regex.IsMatch(value, @"@(fiap\.com\.br|alura\.com\.br|pm3\.com\.br)$"))
-                throw new ArgumentException("E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.", nameof(value));
+                throw new ArgumentException("E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.");
         }
 
         private static void ValidarEmail(string value)
         {
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("E-mail não pode ser vazio.", nameof(value));
+                throw new ArgumentException("E-mail não pode ser vazio.");
         }
 
-        public string Validar(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                return "E-mail não pode ser vazio.";
-
-            if (!Regex.IsMatch(value, @"@(fiap\.com\.br|alura\.com\.br|pm3\.com\.br)$"))
-                return "E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.";
-
-            return string.Empty;
-        }
     }
 }

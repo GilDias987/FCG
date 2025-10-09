@@ -1,7 +1,13 @@
-﻿using FCG.ApplicationCore.Dto.Autenticacao.GrupoUsuario;
+﻿using FCG.ApplicationCore.Feature.Usuario.Command.AddGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Command.DeleteGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Command.EditGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Query.GetGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Query.LIstGrupoUsuario;
 using FCG.ApplicationCore.Interface.Service;
 using FCG.ApplicationCore.Service;
 using FCG.Domain.Entity;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,41 +17,42 @@ namespace FCG.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class GrupoUsuarioController : ControllerBase
     {
-        private readonly IGrupoUsuarioService _grupoUsuarioService;
-        public GrupoUsuarioController(IGrupoUsuarioService grupoUsuarioService)
+        private readonly IMediator _mediator;
+        public GrupoUsuarioController(IMediator mediator)
         {
-            _grupoUsuarioService = grupoUsuarioService;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AdicionarGrupoUsuario([FromBody] AddGrupoUsuarioDto addGrupoUsuarioDto)
+        public async Task<IActionResult> AdicionarGrupoUsuario([FromBody] AddGrupoUsuarioCommand addGrupoUsuarioCommand)
         {
             try
             {
-                await _grupoUsuarioService.CadastrarAsync(addGrupoUsuarioDto);
-                return Ok("Grupo de Usuario cadastrado com sucesso");
+                var grupoUsuarioId = await _mediator.Send(addGrupoUsuarioCommand);
+                var grupo = await ObterGrupoUsuario(grupoUsuarioId);
+                return grupo;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                throw;
             }
         }
 
-
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult> EditarGrupoUsuario(int id, [FromBody] AddGrupoUsuarioDto addGrupoUsuarioDto)
+        [HttpPut()]
+        public async Task<IActionResult> EditarGrupoUsuario([FromBody] EditGrupoUsuarioCommand editGrupoUsuarioCommand)
         {
             try
             {
-                await _grupoUsuarioService.EditarAsync(id, addGrupoUsuarioDto);
-                return Ok("Grupo de Usuario editado com sucesso");
+                var grupoUsuarioId = await _mediator.Send(editGrupoUsuarioCommand);
+                var grupo = await ObterGrupoUsuario(grupoUsuarioId);
+                return grupo;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                throw;
             }
         }
 
@@ -54,12 +61,40 @@ namespace FCG.WebAPI.Controllers
         {
             try
             {
-                await _grupoUsuarioService.ExcluirAsync(id);
-                return Ok("Grupo de Usuario excluído com sucesso");
+                await _mediator.Send(new DeleteGrupoUsuarioCommand { Id = id });
+                return Ok("Grupo de Usuario deletado com sucesso");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                throw;
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterGrupoUsuario(int id)
+        {
+            try
+            {
+                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioRequest { Id = id});
+                return Ok(grupoUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [HttpGet("ListarGruposUsuario")]
+        public async Task<IActionResult> ListarGrupoUsuario()
+        {
+            try
+            {
+                var lstGrupoUsuario = await _mediator.Send(new ListGrupoUsuarioRequest());
+                return Ok(lstGrupoUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

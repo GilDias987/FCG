@@ -27,10 +27,25 @@ namespace FCG.Domain.ValueObjects
         /// <param name="textSenha"></param>
         public Senha(string textSenha)
         {
-            Validar(textSenha);
+            string senha = textSenha.Trim();
+            ValidarSenha(senha);
 
-            TextSenha = textSenha;
-            TextHash = BCrypt.Net.BCrypt.HashPassword(textSenha);
+            TextSenha = senha;
+            TextHash = BCrypt.Net.BCrypt.HashPassword(senha);
+        }
+
+
+        /// <summary>
+        /// Senha
+        /// </summary>
+        /// <param name="textSenha"></param>
+        public Senha(string textSenha, string textHash)
+        {
+            string senha = textSenha.Trim();
+            ValidarSenha(senha);
+
+            TextSenha = senha;
+            TextHash = textHash;
         }
 
         /// <summary>
@@ -59,21 +74,5 @@ namespace FCG.Domain.ValueObjects
                 throw new ArgumentException("Senha deve conter pelo menos um caractere especial.");
         }
 
-        public string Validar(string senha)
-        {
-            if (senha.Length < 8)
-                return "Senha deve ter pelo menos 8 caracteres.";
-
-            if (!Regex.IsMatch(senha, "[a-zA-Z]"))
-                return "Senha deve conter pelo menos uma letra.";
-
-            if (!Regex.IsMatch(senha, "[0-9]"))
-                return "Senha deve conter pelo menos um número.";
-
-            if (!Regex.IsMatch(senha, "[^a-zA-Z0-9]"))
-                return "Senha deve conter pelo menos um caractere especial.";
-
-            return string.Empty;
-        }
     }
 }

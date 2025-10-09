@@ -3,6 +3,7 @@ using FCG.Domain.Entity;
 using FCG.Domain.ValueObjects;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,16 @@ namespace FCG.Infrastructure.Repository
         public UsuarioRepository(ApplicationDbContext context) : base(context)
         {
         }
-
-        public bool VerificarSeExisteUsuarioEmail(string email)
+        public async Task<bool> VerificarSeExisteUsuarioEmailAsync(string email)
         {
-            var grupo = _dbSet.FirstOrDefault(g => g.Email.ToLower() == email.ToLower());
-            return grupo != null ? true : false;
+            var usuario = await _dbSet.FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+            return usuario != null ? true : false;
         }
+
+        public async Task<Usuario> UsuarioEmailAsync(string email)
+        {
+            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+        }
+
     }
 }

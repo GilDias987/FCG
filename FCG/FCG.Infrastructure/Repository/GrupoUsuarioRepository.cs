@@ -2,6 +2,7 @@
 using FCG.Domain.Entity;
 using FCG.Infrastructure.Contexto;
 using FCG.Infrastructure.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,16 @@ namespace FCG.Infrastructure.Repository
         {
         }
 
-        public bool VerificarSeExisteGrupo(string nomeGrupo)
+        public async Task<bool> VerificarSeExisteGrupoAsync(string nomeGrupo)
         {
-            var grupo = _dbSet.FirstOrDefault(g => g.Nome.ToLower() == nomeGrupo.ToLower());
+            var grupo = await _dbSet.FirstOrDefaultAsync(g => g.Nome.ToLower() == nomeGrupo.ToLower());
             return grupo != null ? true : false;
+        }
+
+        public async Task<IList<GrupoUsuario>> ListarGrupoUsuario()
+        {
+            return await _dbSet.OrderBy(x => x.Nome).ToListAsync();
+        
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FCG.ApplicationCore.Dto.Autenticacao.GrupoUsuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Interface.Service;
+using FCG.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +17,6 @@ namespace FCG.ApplicationCore.Service
         {
             _grupoUsuarioRepository = grupoUsuarioRepository;
         }
-        public async Task CadastrarAsync(AddGrupoUsuarioDto addGrupoUsuarioDto)
-        {
-            try
-            {
-                if (_grupoUsuarioRepository.VerificarSeExisteGrupo(addGrupoUsuarioDto.Nome))
-                    throw new Exception("Já existe um grupo com esse nome.");
-
-                var grupoUsuario = await _grupoUsuarioRepository.AddAsync(new Domain.Entity.GrupoUsuario
-                {
-                    Nome = addGrupoUsuarioDto.Nome
-                });
-
-            }
-            catch(Exception ex)
-            {
-                throw new Exception("Erro ao cadastrar grupo de usuário. " + ex.Message);
-            }
-        }
 
         public async Task EditarAsync(int id, AddGrupoUsuarioDto addGrupoUsuarioDto)
         {
@@ -41,37 +24,29 @@ namespace FCG.ApplicationCore.Service
             {
                 var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(id);
 
-               
                 if (grupoUsuario == null)
-                    throw new Exception("Grupo de usuário não encontrado.");
+                    throw new ArgumentException("Grupo de usuário não encontrado.");
 
-                grupoUsuario.Nome = addGrupoUsuarioDto.Nome;
+                if (grupoUsuario.Nome != addGrupoUsuarioDto.Nome)
+                {
+                    //if (VerificarGrupoUsuarioExistente(addGrupoUsuarioDto.Nome))
+                    //    throw new ArgumentException("Já existe um grupo de usuário com esse nome.");
 
-                await _grupoUsuarioRepository.UpdateAsync(grupoUsuario);
+                    grupoUsuario.Inicializar(addGrupoUsuarioDto.Nome);
 
+                    await _grupoUsuarioRepository.UpdateAsync(grupoUsuario);
+                }
+
+            }
+            catch (ArgumentException ex)
+            {
+                throw ex;
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao cadastrar grupo de usuário. " + ex.Message);
+                throw new Exception("Error ao editar grupo de usuário");
             }
         }
 
-        public async Task ExcluirAsync(int id)
-        {
-            try
-            {
-                var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(id);
-
-                if (grupoUsuario == null)
-                    throw new Exception("Grupo de usuário não encontrado para exclusão.");
-
-                await _grupoUsuarioRepository.DeleteAsync(id);
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erro ao excluir grupo de usuário. " + ex.Message);
-            }
-        }
     }
 }
