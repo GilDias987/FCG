@@ -9,8 +9,6 @@ namespace FCG.ApplicationCore.Interface.Service
 {
     public interface IGrupoUsuarioService
     {
-        public Task CadastrarAsync(AddGrupoUsuarioDto addGrupoUsuarioDto);
         public Task EditarAsync(int id, AddGrupoUsuarioDto addGrupoUsuarioDto);
-        public Task ExcluirAsync(int id);
     }
 }

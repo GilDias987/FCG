@@ -10,6 +10,7 @@ namespace FCG.ApplicationCore.Interface.Repository
 {
     public interface IGrupoUsuarioRepository : IRepository<GrupoUsuario>
     {
-        public bool VerificarSeExisteGrupo(string nomeGrupo);
+        public Task<bool> VerificarSeExisteGrupoAsync(string nomeGrupo);
+        public Task<IList<GrupoUsuario>> ListarGrupoUsuario();
     }
 }

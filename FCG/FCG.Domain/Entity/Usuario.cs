@@ -24,43 +24,52 @@ namespace FCG.Domain.Entity
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
+        public Usuario()
+        {
+
+        }
+
         public Usuario(string nome, string email, string senha, int grupoUsuarioId)
         {
-            Salvar(nome, email, senha, grupoUsuarioId);
+            Inicializar(nome, email, senha, grupoUsuarioId);
         }
 
-        public void Salvar(string nome, string email, string senha, int grupoUsuarioId)
+        public void Inicializar(string nome, string email, string senha, int grupoUsuarioId)
         {
-            ValidaUsuario(nome, email, senha);
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nome))
+                {
+                    throw new ArgumentException("O nome do usuário não pode ser vazio.");
+                }
 
-            Email objEmail = new Email(email);
-            Senha objSenha = new Senha(senha);
-            Nome = nome;
-            Email = objEmail.Endereco;
-            Senha = objSenha.TextHash;
-            GrupoUsuarioId = grupoUsuarioId;
+                Email objEmail = new Email(email);
+                Senha objSenha = new Senha(senha);
+
+                Nome = nome.Trim();
+                Email = objEmail.Endereco;
+                Senha = objSenha.TextHash;
+                GrupoUsuarioId = grupoUsuarioId;
+            }
+            catch(ArgumentException ex)
+            {
+                throw ex;
+            }
         }
 
-        private void ValidaUsuario(string nome, string email, string senha)
+        public bool ValidarSenha(string senha, string senhaHash)
         {
-            if (string.IsNullOrWhiteSpace(nome))
+            try
             {
-                throw new ArgumentException("O nome não pode ser vazio.");
+                Senha objSenha = new Senha(senha, senhaHash);
+                return objSenha.Verificar(senha);
+                
             }
-
-            Email objEmail = new Email(email);
-
-            if (!string.IsNullOrWhiteSpace(objEmail.Validar(email)))
+            catch (ArgumentException ex)
             {
-                throw new ArgumentException(objEmail.Validar(email));
-            }
-
-            Senha objSenha = new Senha(senha);
-
-            if (!string.IsNullOrWhiteSpace(objSenha.Validar(senha)))
-            {
-                throw new ArgumentException(objSenha.Validar(senha));
+                throw ex;
             }
         }
+
     }
 }
