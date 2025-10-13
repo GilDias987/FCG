@@ -23,10 +23,14 @@ namespace FCG.Infrastructure.Repository
             return usuario != null ? true : false;
         }
 
-        public async Task<Usuario> UsuarioEmailAsync(string email)
+        public async Task<Usuario?> UsuarioEmailAsync(string email)
         {
             return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
         }
 
+        public async Task<Usuario?> GetUsuarioAsync(int id)
+        {
+            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Id == id);
+        }
     }
 }

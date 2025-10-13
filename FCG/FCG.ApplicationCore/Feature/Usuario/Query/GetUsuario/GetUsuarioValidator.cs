@@ -23,7 +23,6 @@ namespace FCG.ApplicationCore.Feature.Usuario.Query.GetUsuario
               .WithMessage("O id deve ser maior que zero.")
               .MustAsync(async (Id, cancellation) => (await _usuarioRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
               .WithMessage("O id informado não foi encontrado.");
-
         }
     }
 }

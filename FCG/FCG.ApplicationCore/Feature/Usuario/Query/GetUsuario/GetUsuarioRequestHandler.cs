@@ -1,11 +1,5 @@
 ﻿using FCG.ApplicationCore.Interface.Repository;
-using FluentValidation;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCG.ApplicationCore.Feature.Usuario.Query.GetUsuario
 {
@@ -20,9 +14,13 @@ namespace FCG.ApplicationCore.Feature.Usuario.Query.GetUsuario
 
         public async Task<GetUsuarioResponse> Handle(GetUsuarioRequest request, CancellationToken cancellationToken)
         {
-            var usuario = await _usuarioRepository.GetByIdAsync(request.Id);
-            return new GetUsuarioResponse { Email = usuario.Email, Nome = usuario.Nome };
-        }
+            var usuario = await _usuarioRepository.GetUsuarioAsync(request.Id);
+            if (usuario is null)
+            {
+                throw new ArgumentException("Usuário não encontrado.");
+            }
 
+            return new GetUsuarioResponse { Id = usuario.Id, Email = usuario.Email, Nome = usuario.Nome, Grupo = usuario.GrupoUsuario.Nome };
+        }
     }
 }
