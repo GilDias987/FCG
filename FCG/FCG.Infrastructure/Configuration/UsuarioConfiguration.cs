@@ -17,12 +17,25 @@ namespace FCG.Infrastructure.Configuration
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).HasColumnType("INT").HasColumnName("ISN_USUARIO").UseIdentityColumn();
             builder.Property(p => p.Nome).HasColumnType("VARCHAR(1000)").HasColumnName("DSC_NOME").IsRequired();
-            builder.Property(p => p.Email).HasColumnType("VARCHAR(500)").HasColumnName("DSC_EMAIL").IsRequired();
-            builder.HasIndex(p => p.Email).IsUnique();
-            builder.Property(p => p.Senha).HasColumnType("VARCHAR(500)").HasColumnName("DSC_SENHA").IsRequired();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
             builder.Property(p => p.GrupoUsuarioId).HasColumnType("INT").HasColumnName("ISN_GRUPO");
+            #region Value Object
+         
+            builder.OwnsOne(p => p.Email, nbuilder =>
+            {
+                 nbuilder.Property(p => p.Endereco).HasColumnType("VARCHAR(500)").HasColumnName("DSC_EMAIL").IsRequired();
+                 nbuilder.HasIndex(p => p.Endereco).IsUnique();
+            });
+
+            builder.OwnsOne(p => p.Senha, nbuilder =>
+            {
+                nbuilder.Property(p => p.Valor).HasColumnType("VARCHAR(500)").HasColumnName("DSC_SENHA").IsRequired();
+            });
+
+
+            #endregion
+
 
             builder.HasOne(p => p.GrupoUsuario)
                    .WithMany(p => p.Usuarios)

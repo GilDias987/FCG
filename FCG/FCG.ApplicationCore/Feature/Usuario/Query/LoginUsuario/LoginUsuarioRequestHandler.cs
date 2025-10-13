@@ -21,17 +21,22 @@ namespace FCG.ApplicationCore.Feature.Usuario.Query.LoginUsuario
 
         public async Task<GetUsuarioResponse> Handle(LoginUsuarioRequest request, CancellationToken cancellationToken)
         {
-
+            var exceptionMessage = new ArgumentException("E-mail ou senha inválidos.");
 
             var usuarioEmail = await _usuarioRepository.UsuarioEmailAsync(request.Email.Trim());
 
-            var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim(), usuarioEmail.Senha);
+            var usuarioDomionio = usuarioEmail?.Email.ObterDominio();
+
+            if (usuarioEmail == null)
+                throw exceptionMessage;
+
+            var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim());
 
             if (!senhaValida)
-                throw new ArgumentException("E-mail ou senha inválidos.");
+                throw exceptionMessage;
 
             return new GetUsuarioResponse { Id = usuarioEmail.Id, 
-                                             Email = usuarioEmail.Email, 
+                                             Email = usuarioEmail.Email.Endereco, 
                                              Nome = usuarioEmail.Nome,
                                              Grupo = usuarioEmail.GrupoUsuario.Nome };
         }

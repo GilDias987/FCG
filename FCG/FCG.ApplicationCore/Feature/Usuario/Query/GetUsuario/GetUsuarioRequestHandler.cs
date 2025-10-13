@@ -20,7 +20,7 @@ namespace FCG.ApplicationCore.Feature.Usuario.Query.GetUsuario
                 throw new ArgumentException("Usuário não encontrado.");
             }
 
-            return new GetUsuarioResponse { Id = usuario.Id, Email = usuario.Email, Nome = usuario.Nome, Grupo = usuario.GrupoUsuario.Nome };
+            return new GetUsuarioResponse { Id = usuario.Id, Email = usuario.Email.Endereco, Nome = usuario.Nome, Grupo = usuario.GrupoUsuario.Nome };
         }
     }
 }

@@ -13,8 +13,8 @@ namespace FCG.Domain.Entity
     {
         #region Propriedades Base
         public  string Nome { get; private set; }
-        public  string Email { get; private set; }
-        public  string Senha { get; private set; }
+        public  Email Email { get; private set; }
+        public  Senha Senha { get; private set; }
         #endregion
 
 
@@ -29,12 +29,12 @@ namespace FCG.Domain.Entity
 
         }
 
-        public Usuario(string nome, string email, string senha, int grupoUsuarioId)
+        public Usuario(string nome, Email email, Senha senha, int grupoUsuarioId)
         {
             Inicializar(nome, email, senha, grupoUsuarioId);
         }
 
-        public void Inicializar(string nome, string email, string senha, int grupoUsuarioId)
+        public void Inicializar(string nome, Email email, Senha senha, int grupoUsuarioId)
         {
             try
             {
@@ -43,12 +43,9 @@ namespace FCG.Domain.Entity
                     throw new ArgumentException("O nome do usuário não pode ser vazio.");
                 }
 
-                Email objEmail = new Email(email);
-                Senha objSenha = new Senha(senha);
-
                 Nome = nome.Trim();
-                Email = objEmail.Endereco;
-                Senha = objSenha.TextHash;
+                Email = email;
+                Senha = senha;
                 GrupoUsuarioId = grupoUsuarioId;
             }
             catch(ArgumentException ex)
@@ -57,12 +54,11 @@ namespace FCG.Domain.Entity
             }
         }
 
-        public bool ValidarSenha(string senha, string senhaHash)
+        public bool ValidarSenha(string senha)
         {
             try
             {
-                Senha objSenha = new Senha(senha, senhaHash);
-                return objSenha.Verificar(senha);
+                return Senha.Verificar(senha);
                 
             }
             catch (ArgumentException ex)
