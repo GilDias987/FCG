@@ -6,7 +6,7 @@ using System.Globalization;
 namespace FCG.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class segundamigracao : Migration
+    public partial class Segundamigracao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

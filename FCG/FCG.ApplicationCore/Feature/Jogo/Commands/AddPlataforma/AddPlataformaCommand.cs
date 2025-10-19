@@ -1,0 +1,12 @@
+﻿using MediatR;
+
+// Dependências
+using FCG.ApplicationCore.Dto.Jogo;
+
+namespace FCG.ApplicationCore.Feature.Jogo.Commands.AddPlataforma
+{
+    public class AddPlataformaCommand : IRequest<PlataformaDto>
+    {
+        public required string Titulo { get; set; }
+    }
+}

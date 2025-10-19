@@ -1,55 +1,84 @@
-﻿using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
-using FCG.ApplicationCore.Feature.Usuario.Query.GetUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Query.LoginUsuario;
-using FCG.ApplicationCore.Interface.Service;
-using FCG.ApplicationCore.Service;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+// Dependências
+using FCG.ApplicationCore.Feature.Usuario.Commands.AddUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Commands.DeleteUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Commands.EditUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Queries.GetUsuario;
+
 namespace FCG.WebAPI.Controllers
 {
-
+    /// <summary>
+    /// Usuário
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(Policy = "ADMINISTRADOR")]
+    //[Authorize(Policy = "ADMINISTRADOR")]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
-
         private readonly IMediator _mediator;
-        public UsuarioController(IUsuarioService usuarioService, IMediator mediator)
+
+        public UsuarioController(IMediator mediator)
         {
-            _usuarioService = usuarioService;
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Incluir Usuário
+        /// </summary>
+        /// <param name="addUsuarioCommand"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> AdicionarUsuario([FromBody] AddUsuarioDto addUsuarioDto)
+        public async Task<IActionResult> IncluirUsuario(AddUsuarioCommand addUsuarioCommand)
         {
-            try
-            {
-                await _usuarioService.CadastrarAsync(addUsuarioDto);
-                return Ok("Usuario cadastrado com sucesso");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var usuario = await _mediator.Send(addUsuarioCommand);
+
+            return Created($"/api/usuario/{usuario.Id}", usuario);
         }
 
+        /// <summary>
+        /// Alterar Usuário
+        /// </summary>
+        /// <param name="editUsuarioCommand"></param>
+        /// <returns></returns>
+        [HttpPut()]
+        public async Task<IActionResult> AlterarUsuario([FromBody] EditUsuarioCommand editUsuarioCommand)
+        {
+            var usuario = await _mediator.Send(editUsuarioCommand);
+
+            return Ok(usuario);
+        }
+
+        /// <summary>
+        /// Deletar Usuário
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletarUsuario(int id)
+        {
+            var isDeleted = await _mediator.Send(new DeleteUsuarioCommand { Id = id });
+            if (isDeleted)
+            {
+                return Ok("Usuário deletado com sucesso");
+            }
+
+            return NotFound();
+        }
+
+        /// <summary>
+        /// Obter Usuário
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> ObterUsuario(int id)
         {
-            try
-            {
-                var usuario = await _mediator.Send(new GetUsuarioRequest { Id = id });
-                return Ok(usuario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var usuario = await _mediator.Send(new GetUsuarioQuery { Id = id });
+
+            return Ok(usuario);
         }
     }
 }

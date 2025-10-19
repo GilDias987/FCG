@@ -22,10 +22,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FCG.Domain\FCG.Domain.csproj" />
+    <ProjectReference Include="..\FCG.Helper\FCG.Helper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Dto\Autenticacao\GrupoUsuario\" />
+    <Folder Include="Feature\Usuario\Commands\UsuarioLogin\" />
   </ItemGroup>
 
 </Project>

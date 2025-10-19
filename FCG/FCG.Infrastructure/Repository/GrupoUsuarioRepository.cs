@@ -1,13 +1,10 @@
-﻿using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entity;
-using FCG.Infrastructure.Contexto;
+﻿using Microsoft.EntityFrameworkCore;
+
+// Dependências
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Entities;
+using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository.Base;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCG.Infrastructure.Repository
 {
@@ -15,6 +12,16 @@ namespace FCG.Infrastructure.Repository
     {
         public GrupoUsuarioRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        /// <summary>
+        /// Checar se o item existe
+        /// </summary>
+        /// <param name="Nome"></param>
+        /// <returns></returns>
+        public async Task<bool> ExistePorNomeAsync(string nome)
+        {
+            return await _dbSet.AnyAsync(a => a.Nome.Trim().ToLower() == nome.Trim().ToLower());
         }
 
         public async Task<bool> VerificarSeExisteGrupoAsync(string nomeGrupo)
@@ -26,7 +33,6 @@ namespace FCG.Infrastructure.Repository
         public async Task<IList<GrupoUsuario>> ListarGrupoUsuario()
         {
             return await _dbSet.OrderBy(x => x.Nome).ToListAsync();
-        
         }
     }
 }

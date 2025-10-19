@@ -1,12 +1,8 @@
-﻿using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
+﻿// Dependências
+using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Interface.Service;
-using FCG.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FCG.Domain.Entities;
 
 namespace FCG.ApplicationCore.Service
 {
@@ -50,14 +46,12 @@ namespace FCG.ApplicationCore.Service
         {
             try
             {
-                var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(addUsuarioDto.GrupoUsuarioId);
-               
+                var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(addUsuarioDto.GrupoUsuarioId);               
                 if (grupoUsuario == null)
                     throw new ArgumentException("Grupo de usuário não encontrado.");
 
-                var usuarioEmail = await _usuarioRepository.VerificarSeExisteUsuarioEmailAsync(addUsuarioDto.Email);
-               
-                if(usuarioEmail)
+                var usuarioEmail = await _usuarioRepository.VerificarSeExisteUsuarioEmailAsync(addUsuarioDto.Email);               
+                if (usuarioEmail)
                     throw new ArgumentException("Existe um usuário com esse e-mail.");
 
                 var usuario = new Usuario(addUsuarioDto.Nome, addUsuarioDto.Email, addUsuarioDto.Senha, addUsuarioDto.GrupoUsuarioId);
@@ -110,6 +104,5 @@ namespace FCG.ApplicationCore.Service
         {
             throw new NotImplementedException();
         }
-
     }
 }
