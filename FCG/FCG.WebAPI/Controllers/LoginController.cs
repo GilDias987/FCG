@@ -1,14 +1,14 @@
-﻿using FCG.ApplicationCore.Feature.Usuario.Query.LoginUsuario;
-using FCG.WebAPI.Authentication;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+
+// Depenências
+using FCG.ApplicationCore.Feature.Usuario.Queries.LoginUsuario;
+using FCG.WebAPI.Authentication;
 
 namespace FCG.WebAPI.Controllers
 {
-
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class LoginController : ControllerBase
     {
         private readonly IMediator _mediator;

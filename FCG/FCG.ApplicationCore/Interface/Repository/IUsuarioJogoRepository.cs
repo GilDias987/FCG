@@ -1,5 +1,5 @@
 ﻿using FCG.ApplicationCore.Interface.Repository.Base;
-using FCG.Domain.Entity;
+using FCG.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
