@@ -1,6 +1,8 @@
-﻿using FCG.Domain.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+// Dependências
+using FCG.Domain.Entities;
 
 namespace FCG.Infrastructure.Configuration
 {
@@ -14,7 +16,6 @@ namespace FCG.Infrastructure.Configuration
             builder.Property(g => g.Nome).HasColumnType("VARCHAR(500)").HasColumnName("DSC_GRUPO").IsRequired();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
-
         }
     }
 }

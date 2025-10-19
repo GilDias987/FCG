@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace FCG.Domain.ValueObjects
 {
@@ -33,7 +28,6 @@ namespace FCG.Domain.ValueObjects
             TextSenha = senha;
             TextHash = BCrypt.Net.BCrypt.HashPassword(senha);
         }
-
 
         /// <summary>
         /// Senha

@@ -1,12 +1,8 @@
-﻿using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entity;
-using FCG.Infrastructure.Contexto;
+﻿// Dependências
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Entities;
+using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCG.Infrastructure.Repository
 {
