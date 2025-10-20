@@ -1,19 +1,34 @@
-﻿using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entity;
-using FCG.Infrastructure.Contexto;
+﻿using Microsoft.EntityFrameworkCore;
+
+// Dependências
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Entities;
+using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCG.Infrastructure.Repository
 {
     public class JogoRepository : EFRepository<Jogo>, IJogoRepository
     {
+        /// <summary>
+        /// Jogo
+        /// </summary>
+        /// <param name="context"></param>
         public JogoRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        /// <summary>
+        /// GetJogo \ Genero \ Plataforma
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Jogo?> GetJogoIdAsync(int id)
+        {
+            return await _dbSet
+                .Include(i => i.Genero)
+                .Include(i => i.Plataforma)
+                .FirstOrDefaultAsync(g => g.Id == id);
         }
     }
 }

@@ -1,15 +1,17 @@
-using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Interface.Service;
-using FCG.ApplicationCore.Registration;
-using FCG.ApplicationCore.Service;
-using FCG.Infrastructure.Contexto;
-using FCG.Infrastructure.Repository;
-using FCG.WebAPI.Middeware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 using System.Text;
+
+// Dependências
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.ApplicationCore.Interface.Service;
+using FCG.ApplicationCore.Registration;
+using FCG.ApplicationCore.Service;
+using FCG.Infrastructure.Context;
+using FCG.Infrastructure.Repository;
+using FCG.WebAPI.Middeware;
 
 var builder = WebApplication.CreateBuilder(args);
 

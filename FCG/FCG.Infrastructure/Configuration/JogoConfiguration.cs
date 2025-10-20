@@ -1,11 +1,8 @@
-﻿using FCG.Domain.Entity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+// Dependências
+using FCG.Domain.Entities;
 
 namespace FCG.Infrastructure.Configuration
 {
@@ -17,6 +14,7 @@ namespace FCG.Infrastructure.Configuration
             builder.HasKey(g => g.Id);
             builder.Property(g => g.Id).HasColumnType("INT").HasColumnName("ISN_JOGO").UseIdentityColumn();
             builder.Property(g => g.Titulo).HasColumnType("VARCHAR(500)").HasColumnName("DSC_TITULO").IsRequired();
+            builder.Property(g => g.Descricao).HasColumnType("VARCHAR(2000)").HasColumnName("DSC_DESCRICAO").IsRequired();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
             builder.Property(P => P.Preco).HasColumnType("DECIMAL(18,2)").HasColumnName("VLR_PRECO");

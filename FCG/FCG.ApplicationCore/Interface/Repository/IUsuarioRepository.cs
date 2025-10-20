@@ -1,10 +1,6 @@
-﻿using FCG.ApplicationCore.Interface.Repository.Base;
-using FCG.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Dependências
+using FCG.ApplicationCore.Interface.Repository.Base;
+using FCG.Domain.Entities;
 
 namespace FCG.ApplicationCore.Interface.Repository
 {
@@ -13,5 +9,7 @@ namespace FCG.ApplicationCore.Interface.Repository
         Task<bool> VerificarSeExisteUsuarioEmailAsync(string email);
         Task<Usuario?> UsuarioEmailAsync(string email);
         Task<Usuario?> GetUsuarioAsync(int id);
+
+        Task<bool> GetByEmailExistsAsync(int usuarioId, string email);
     }
 }
