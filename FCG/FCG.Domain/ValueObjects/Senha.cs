@@ -1,51 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace FCG.Domain.ValueObjects
 {
-    public class Senha
+    public record class Senha
     {
-        /// <summary>
-        /// Texto Hash
-        /// </summary>
-        public string TextHash
-        { get; }
-
         /// <summary>
         /// Texto Senha
         /// </summary>
-        public string TextSenha
-        { get; private set; }
+        public string Valor { get; private set; }
+
 
         /// <summary>
         /// Senha
         /// </summary>
         /// <param name="textSenha"></param>
-        public Senha(string textSenha)
+        public Senha()
         {
-            string senha = textSenha.Trim();
-            ValidarSenha(senha);
-
-            TextSenha = senha;
-            TextHash = BCrypt.Net.BCrypt.HashPassword(senha);
+     
         }
 
-
         /// <summary>
         /// Senha
         /// </summary>
         /// <param name="textSenha"></param>
-        public Senha(string textSenha, string textHash)
+        public Senha(string valor)
         {
-            string senha = textSenha.Trim();
-            ValidarSenha(senha);
-
-            TextSenha = senha;
-            TextHash = textHash;
+            string objSenha = valor.Trim();
+            ValidarSenha(objSenha);
+            Valor = BCrypt.Net.BCrypt.HashPassword(objSenha);
         }
 
         /// <summary>
@@ -53,7 +35,7 @@ namespace FCG.Domain.ValueObjects
         /// </summary>
         public bool Verificar(string textSenha)
         {
-            return BCrypt.Net.BCrypt.Verify(textSenha, TextHash);
+            return BCrypt.Net.BCrypt.Verify(textSenha, Valor);
         }
 
         /// <summary>

@@ -1,23 +1,18 @@
-﻿using FCG.ApplicationCore.Feature.Usuario.Command.AddGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Command.DeleteGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Command.EditGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Query.GetGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Query.LIstGrupoUsuario;
-using FCG.ApplicationCore.Interface.Service;
-using FCG.ApplicationCore.Service;
-using FCG.Domain.Entity;
+﻿using FCG.ApplicationCore.Feature.Usuario.Commands.AddGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Commands.DeleteGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Commands.EditGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Queries.GetGrupoUsuario;
+using FCG.ApplicationCore.Feature.Usuario.Queries.ListGrupoUsuario;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace FCG.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class GrupoUsuarioController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -32,7 +27,7 @@ namespace FCG.WebAPI.Controllers
             try
             {
                 var grupoUsuarioId = await _mediator.Send(addGrupoUsuarioCommand);
-                var grupo = await ObterGrupoUsuario(grupoUsuarioId);
+                var grupo = await ObterGrupoUsuario(grupoUsuarioId, true);
                 return grupo;
             }
             catch (Exception)
@@ -71,12 +66,12 @@ namespace FCG.WebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> ObterGrupoUsuario(int id)
+        public async Task<IActionResult> ObterGrupoUsuario(int id, bool isCreate = false)
         {
             try
             {
-                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioRequest { Id = id});
-                return Ok(grupoUsuario);
+                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioQuery { Id = id});
+                return isCreate? Created("ObterGrupo", grupoUsuario) : Ok(grupoUsuario);
             }
             catch (Exception)
             {

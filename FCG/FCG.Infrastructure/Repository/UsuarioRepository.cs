@@ -1,14 +1,10 @@
-﻿using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entity;
-using FCG.Domain.ValueObjects;
-using FCG.Infrastructure.Contexto;
+﻿using Microsoft.EntityFrameworkCore;
+
+// Dependências
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Entities;
+using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository.Base;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FCG.Infrastructure.Repository
 {
@@ -17,15 +13,23 @@ namespace FCG.Infrastructure.Repository
         public UsuarioRepository(ApplicationDbContext context) : base(context)
         {
         }
+
         public async Task<bool> VerificarSeExisteUsuarioEmailAsync(string email)
         {
-            var usuario = await _dbSet.FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+            var usuario = await _dbSet.FirstOrDefaultAsync(g => g.Email.Endereco.ToLower() == email.ToLower());
             return usuario != null ? true : false;
+        }
+
+        public async Task<bool> GetByEmailExistsAsync(int usuarioId, string email)
+        {
+            return await _dbSet
+                .Include(i => i.GrupoUsuario)
+               .AnyAsync(a => a.Id != usuarioId && a.Email.Endereco.ToLower() == email.ToLower());
         }
 
         public async Task<Usuario?> UsuarioEmailAsync(string email)
         {
-            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.Endereco.ToLower() == email.ToLower());
         }
 
         public async Task<Usuario?> GetUsuarioAsync(int id)
