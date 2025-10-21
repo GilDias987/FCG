@@ -16,7 +16,7 @@ namespace FCG.Infrastructure.Repository
 
         public async Task<bool> VerificarSeExisteUsuarioEmailAsync(string email)
         {
-            var usuario = await _dbSet.FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+            var usuario = await _dbSet.FirstOrDefaultAsync(g => g.Email.Endereco.ToLower() == email.ToLower());
             return usuario != null ? true : false;
         }
 
@@ -24,12 +24,12 @@ namespace FCG.Infrastructure.Repository
         {
             return await _dbSet
                 .Include(i => i.GrupoUsuario)
-               .AnyAsync(a => a.Id != usuarioId && a.Email.ToLower() == email.ToLower());
+               .AnyAsync(a => a.Id != usuarioId && a.Email.Endereco.ToLower() == email.ToLower());
         }
 
         public async Task<Usuario?> UsuarioEmailAsync(string email)
         {
-            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.ToLower() == email.ToLower());
+            return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Email.Endereco.ToLower() == email.ToLower());
         }
 
         public async Task<Usuario?> GetUsuarioAsync(int id)

@@ -3,6 +3,7 @@ using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Interface.Service;
 using FCG.Domain.Entities;
+using FCG.Domain.ValueObjects;
 
 namespace FCG.ApplicationCore.Service
 {
@@ -25,12 +26,12 @@ namespace FCG.ApplicationCore.Service
                 if (usuarioEmail == null)
                     throw new ArgumentException("Email não cadastrado na aplicação.");
 
-                var senhaValida = usuarioEmail.ValidarSenha(loginUsuarioDto.Senha.Trim(), usuarioEmail.Senha);
+                var senhaValida = usuarioEmail.ValidarSenha(loginUsuarioDto.Senha.Trim());
 
                 if (!senhaValida)
                     throw new ArgumentException("E-mail ou senha inválidos.");
 
-                return new UsuarioDto { Email = usuarioEmail.Email, Grupo = usuarioEmail.GrupoUsuario.Nome };
+                return new UsuarioDto { Email = usuarioEmail.Email.Endereco, Grupo = usuarioEmail.GrupoUsuario.Nome };
             }
             catch (ArgumentException ex)
             {
@@ -54,13 +55,16 @@ namespace FCG.ApplicationCore.Service
                 if (usuarioEmail)
                     throw new ArgumentException("Existe um usuário com esse e-mail.");
 
-                var usuario = new Usuario(addUsuarioDto.Nome, addUsuarioDto.Email, addUsuarioDto.Senha, addUsuarioDto.GrupoUsuarioId);
+                var usuario = new Usuario(addUsuarioDto.Nome, 
+                                          new Email(addUsuarioDto.Email), 
+                                          new Senha(addUsuarioDto.Senha), 
+                                          addUsuarioDto.GrupoUsuarioId);
 
                 await _usuarioRepository.AddAsync(usuario);
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException argEx)
             {
-                throw ex;
+                throw argEx;
             }
             catch(Exception ex)
             {
@@ -78,7 +82,7 @@ namespace FCG.ApplicationCore.Service
                 if (grupoUsuario == null)
                     throw new ArgumentException("Grupo de usuário não encontrado.");
 
-                if (usuario.Email.Trim() != addUsuarioDto.Email.Trim())
+                if (usuario.Email.Endereco .Trim() != addUsuarioDto.Email.Trim())
                 {
                     var usuarioEmail = await _usuarioRepository.VerificarSeExisteUsuarioEmailAsync(addUsuarioDto.Email);
 
@@ -86,7 +90,10 @@ namespace FCG.ApplicationCore.Service
                         throw new ArgumentException("Existe um usuário com esse e-mail.");
                 }
 
-                usuario.Inicializar(addUsuarioDto.Nome, addUsuarioDto.Email, addUsuarioDto.Senha, addUsuarioDto.GrupoUsuarioId);
+                usuario.Inicializar(addUsuarioDto.Nome, 
+                                    new Domain.ValueObjects.Email(addUsuarioDto.Email), 
+                                    new Domain.ValueObjects.Senha(addUsuarioDto.Senha), 
+                                    addUsuarioDto.GrupoUsuarioId);
 
                 await _usuarioRepository.AddAsync(usuario);
             }

@@ -12,7 +12,7 @@ namespace FCG.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class GrupoUsuarioController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -70,7 +70,7 @@ namespace FCG.WebAPI.Controllers
         {
             try
             {
-                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioRequest { Id = id});
+                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioQuery { Id = id});
                 return isCreate? Created("ObterGrupo", grupoUsuario) : Ok(grupoUsuario);
             }
             catch (Exception)
