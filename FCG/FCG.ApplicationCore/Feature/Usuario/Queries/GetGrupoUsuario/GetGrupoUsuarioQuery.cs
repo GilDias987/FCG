@@ -2,7 +2,7 @@
 
 namespace FCG.ApplicationCore.Feature.Usuario.Queries.GetGrupoUsuario
 {
-    public class GetGrupoUsuarioRequest : IRequest<GrupoUsuarioResponse>
+    public class GetGrupoUsuarioQuery : IRequest<GrupoUsuarioResponse>
     {
         public int Id { get; set; }
     }

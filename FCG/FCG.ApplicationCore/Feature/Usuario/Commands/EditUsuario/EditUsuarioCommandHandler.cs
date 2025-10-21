@@ -5,6 +5,7 @@ using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Feature.Usuario.Commands.EditUsuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Dto.Jogo;
+using FCG.Domain.ValueObjects;
 
 namespace FCG.ApplicationCore.Feature.Usuario.Command.EditUsuario
 {
@@ -32,11 +33,11 @@ namespace FCG.ApplicationCore.Feature.Usuario.Command.EditUsuario
                 if (gruExiste is false)
                     throw new ArgumentException("O Grupo de usuário não foi encontrado.");
 
-                objUsuario.Inicializar(request.Nome, request.Email, request.Senha, request.UsuarioGrupoId);
+                objUsuario.Inicializar(request.Nome, new Email(request.Email), new Senha(request.Senha), request.UsuarioGrupoId);
 
                 await _usuarioRepository.UpdateAsync(objUsuario);
 
-                return new UsuarioDto() { Id = objUsuario.Id, Nome = objUsuario.Nome, Email = objUsuario.Email, GrupoUsuarioId = objUsuario.GrupoUsuarioId };
+                return new UsuarioDto() { Id = objUsuario.Id, Nome = objUsuario.Nome, Email = objUsuario.Email.Endereco, GrupoUsuarioId = objUsuario.GrupoUsuarioId };
             }
             else
             {

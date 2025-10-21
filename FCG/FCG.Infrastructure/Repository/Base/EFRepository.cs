@@ -57,8 +57,7 @@ namespace FCG.Infrastructure.Repository.Base
         /// <returns></returns>
         public T Add(T entidade)
         {
-            entidade.DataCriacao = DateTime.Now;
-            entidade.DataAtualizacao = DateTime.Now;
+            entidade.SetarDataCriacao(DateTime.Now, DateTime.Now);
             _dbSet.Add(entidade);
             _context.SaveChanges();
             return entidade;
@@ -71,8 +70,7 @@ namespace FCG.Infrastructure.Repository.Base
         /// <returns></returns>
         public async Task<T> AddAsync(T entidade)
         {
-            entidade.DataCriacao = DateTime.Now;
-            entidade.DataAtualizacao = DateTime.Now;
+            entidade.SetarDataCriacao(DateTime.Now, DateTime.Now);
             await _dbSet.AddAsync(entidade);
             await _context.SaveChangesAsync();
             return entidade;
@@ -106,7 +104,7 @@ namespace FCG.Infrastructure.Repository.Base
         /// <param name="entidade"></param>
         public void Update(T entidade)
         {
-            entidade.DataAtualizacao = DateTime.Now;
+            entidade.SetarDataAtualizacao(DateTime.Now);
             _dbSet.Update(entidade);
             _context.SaveChanges();
         }
@@ -118,7 +116,7 @@ namespace FCG.Infrastructure.Repository.Base
         /// <returns></returns>
         public async Task UpdateAsync(T entidade)
         {
-            entidade.DataAtualizacao = DateTime.Now;
+            entidade.SetarDataAtualizacao(DateTime.Now);
             _context.Entry(entidade).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }

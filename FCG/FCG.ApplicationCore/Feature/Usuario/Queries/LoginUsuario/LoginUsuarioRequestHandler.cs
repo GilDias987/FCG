@@ -16,13 +16,13 @@ namespace FCG.ApplicationCore.Feature.Usuario.Queries.LoginUsuario
         {
             var usuarioEmail = await _usuarioRepository.UsuarioEmailAsync(request.Email.Trim());
 
-            var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim(), usuarioEmail.Senha);
+            var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim());
 
             if (!senhaValida)
                 throw new ArgumentException("E-mail ou senha inválidos.");
 
             return new GetUsuarioResponse { Id = usuarioEmail.Id, 
-                                             Email = usuarioEmail.Email, 
+                                             Email = usuarioEmail.Email.Endereco, 
                                              Nome = usuarioEmail.Nome,
                                              Grupo = usuarioEmail.GrupoUsuario.Nome };
         }
