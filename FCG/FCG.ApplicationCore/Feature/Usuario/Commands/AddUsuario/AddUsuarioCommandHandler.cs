@@ -5,6 +5,7 @@ using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Feature.Usuario.Commands.AddUsuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Dto.Jogo;
+using FCG.Domain.ValueObjects;
 
 namespace FCG.ApplicationCore.Feature.Usuario.Commands.AddGrupoUsuario
 {
@@ -41,9 +42,9 @@ namespace FCG.ApplicationCore.Feature.Usuario.Commands.AddGrupoUsuario
             // Usando ServiceResponse
             try
             {
-                var objUsuario = await _usuarioRepository.AddAsync(new Domain.Entities.Usuario(request.Nome, request.Email, request.Senha, request.UsuarioGrupoId));
+                var objUsuario = await _usuarioRepository.AddAsync(new Domain.Entities.Usuario(request.Nome, new Email( request.Email),new Senha(request.Senha), request.UsuarioGrupoId));
 
-                return new UsuarioDto() { Id = objUsuario.Id, Nome = objUsuario.Nome, Email = objUsuario.Email, GrupoUsuarioId = objUsuario.GrupoUsuarioId };
+                return new UsuarioDto() { Id = objUsuario.Id, Nome = objUsuario.Nome, Email = objUsuario.Email.Endereco, GrupoUsuarioId = objUsuario.GrupoUsuarioId };
             }
             catch (Exception)
             {

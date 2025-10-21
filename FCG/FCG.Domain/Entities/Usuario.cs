@@ -35,12 +35,7 @@ namespace FCG.Domain.Entities
                     throw new ArgumentException("O nome do usuário não pode ser vazio.");
                 }
 
-                Email objEmail = new Email(email);
-                Senha objSenha = new Senha(senha);
-
                 Nome  = nome.Trim();
-                Email = objEmail.Endereco;
-                Senha = objSenha.TextHash;
                 GrupoUsuarioId = grupoUsuarioId;
             }
             catch(ArgumentException ex)

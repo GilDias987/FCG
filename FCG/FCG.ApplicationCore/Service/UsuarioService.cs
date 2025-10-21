@@ -2,7 +2,7 @@
 using FCG.ApplicationCore.Dto.Autenticacao.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Interface.Service;
-using FCG.Domain.Entity;
+using FCG.Domain.Entities;
 using FCG.Domain.ValueObjects;
 
 namespace FCG.ApplicationCore.Service

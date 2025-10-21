@@ -24,7 +24,7 @@ namespace FCG.Infrastructure.Repository
         {
             return await _dbSet
                 .Include(i => i.GrupoUsuario)
-               .AnyAsync(a => a.Id != usuarioId && a.Email.ToLower() == email.ToLower());
+               .AnyAsync(a => a.Id != usuarioId && a.Email.Endereco.ToLower() == email.ToLower());
         }
 
         public async Task<Usuario?> UsuarioEmailAsync(string email)

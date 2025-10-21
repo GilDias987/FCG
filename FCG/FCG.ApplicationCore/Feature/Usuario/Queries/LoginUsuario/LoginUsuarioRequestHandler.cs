@@ -19,7 +19,7 @@ namespace FCG.ApplicationCore.Feature.Usuario.Queries.LoginUsuario
             var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim());
 
             if (!senhaValida)
-                throw exceptionMessage;
+                throw new ArgumentException("E-mail ou senha inválidos.");
 
             return new GetUsuarioResponse { Id = usuarioEmail.Id, 
                                              Email = usuarioEmail.Email.Endereco, 

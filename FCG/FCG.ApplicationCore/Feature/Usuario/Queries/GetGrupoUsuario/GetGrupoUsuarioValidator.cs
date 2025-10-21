@@ -6,7 +6,7 @@ using FCG.ApplicationCore.Interface.Repository;
 namespace FCG.ApplicationCore.Feature.Usuario.Queries.GetGrupoUsuario
 {
     public sealed class GetGrupoUsuarioValidator
-    : AbstractValidator<GetGrupoUsuarioRequest>
+    : AbstractValidator<GetGrupoUsuarioQuery>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
         public GetGrupoUsuarioValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
