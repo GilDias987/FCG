@@ -5,13 +5,12 @@ using Scalar.AspNetCore;
 using System.Text;
 
 // Dependências
-using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Interface.Service;
-using FCG.ApplicationCore.Registration;
-using FCG.ApplicationCore.Service;
+
 using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository;
 using FCG.WebAPI.Middeware;
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.ApplicationCore.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +64,7 @@ builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IUsuarioJogoRepository, UsuarioJogoRepository>();
 #endregion
 
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddProblemDetails();
