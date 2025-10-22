@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FCG.Domain\FCG.Domain.csproj" />
-    <ProjectReference Include="..\FCG.Helper\FCG.Helper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

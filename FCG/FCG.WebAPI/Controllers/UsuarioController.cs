@@ -1,12 +1,10 @@
-﻿using MediatR;
+﻿using FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// Dependências
-using FCG.ApplicationCore.Feature.Usuario.Commands.AddUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.DeleteUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.EditUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Queries.GetUsuario;
 
 namespace FCG.WebAPI.Controllers
 {

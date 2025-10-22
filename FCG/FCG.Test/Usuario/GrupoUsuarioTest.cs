@@ -1,6 +1,5 @@
-﻿using FCG.ApplicationCore.Feature.Usuario.Queries;
-using FCG.ApplicationCore.Feature.Usuario.Queries.GetGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Queries.GetUsuario;
+﻿
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entities;
 using FCG.Domain.ValueObjects;

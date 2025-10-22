@@ -1,8 +1,9 @@
 ﻿// Dependências
-using FCG.ApplicationCore.Feature.Jogo.Commands.AddGenero;
-using FCG.ApplicationCore.Feature.Jogo.Commands.DeleteGenero;
-using FCG.ApplicationCore.Feature.Jogo.Commands.EditGenero;
-using FCG.ApplicationCore.Feature.Jogo.Queries.GetGenero;
+
+using FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditJGenero;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero;
 using FCG.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +17,7 @@ namespace FCG.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Policy = "ADMINISTRADOR")]
-    public class GeneroController : BaseController
+    public class GeneroController : ControllerBase
     {
         private readonly IMediator _mediator;
 

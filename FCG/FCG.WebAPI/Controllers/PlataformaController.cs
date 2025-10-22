@@ -1,12 +1,10 @@
-﻿using MediatR;
+﻿using FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// Dependências
-using FCG.ApplicationCore.Feature.Jogo.Commands.AddPlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Commands.DeletePlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Commands.EditPlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Queries.GetPlataforma;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -16,7 +14,7 @@ namespace FCG.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Policy = "ADMINISTRADOR")]
-    public class PlataformaController : BaseController
+    public class PlataformaController : ControllerBase
     {
         private readonly IMediator _mediator;
 
