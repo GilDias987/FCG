@@ -1,8 +1,8 @@
 ﻿// Dependências
-using FCG.ApplicationCore.Feature.Jogo.Commands.AddJogo;
-using FCG.ApplicationCore.Feature.Jogo.Commands.DeleteJogo;
-using FCG.ApplicationCore.Feature.Jogo.Commands.EditJogo;
-using FCG.ApplicationCore.Feature.Jogo.Queries.GetJogo;
+using FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +17,7 @@ namespace FCG.WebAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize(Policy = "ADMINISTRADOR")]
-    public class JogoController : BaseController
+    public class JogoController : ControllerBase
     {
         private readonly IMediator _mediator;
 

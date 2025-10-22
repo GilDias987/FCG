@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FCG.ApplicationCore\FCG.ApplicationCore.csproj" />
+    <ProjectReference Include="..\FCG.Application.Interface\FCG.Application.Interface.csproj" />
     <ProjectReference Include="..\FCG.Domain\FCG.Domain.csproj" />
   </ItemGroup>
 

@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 
 // Depenências
-using FCG.ApplicationCore.Feature.Usuario.Queries.LoginUsuario;
 using FCG.WebAPI.Authentication;
+using FCG.Application.UseCases.Feature.Usuario.Queries.LoginUsuario;
 
 namespace FCG.WebAPI.Controllers
 {
