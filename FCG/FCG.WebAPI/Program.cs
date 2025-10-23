@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Scalar.AspNetCore;
 using System.Text;
 
 // Dependências
@@ -22,7 +21,23 @@ var configuration = new ConfigurationBuilder()
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+//builder.Services.AddOpenApi();
+builder.Services.AddOpenApiDocument(options =>
+{
+    options.Title = "Api - Fiap Cloud Game";
+    options.Version = "1.0";
+    options.AddSecurity("Bearer", new NSwag.OpenApiSecurityScheme
+    {
+        Description = "Bearer token authorization header",
+        Type = NSwag.OpenApiSecuritySchemeType.Http,
+        In = NSwag.OpenApiSecurityApiKeyLocation.Header,
+        Name = "Authorization",
+        Scheme = "Bearer"
+    });
+
+    options.OperationProcessors.Add(
+        new NSwag.Generation.Processors.Security.AspNetCoreOperationSecurityScopeProcessor("Bearer"));
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(configuration.GetConnectionString("ConnectionStrings"));
@@ -79,19 +94,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseOpenApi();
 
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/openapi/v1.json", "OpenAPI V1");
-    });
+    app.UseSwaggerUI();
 
-    app.UseReDoc(options =>
-    {
-        options.SpecUrl("/openapi/v1.json");
-    });
 
-    app.MapScalarApiReference();
+
+
 }
 
 app.UseHttpsRedirection();
