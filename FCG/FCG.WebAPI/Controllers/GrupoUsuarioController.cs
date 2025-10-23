@@ -1,8 +1,8 @@
-﻿using FCG.ApplicationCore.Feature.Usuario.Commands.AddGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.DeleteGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.EditGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Queries.GetGrupoUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Queries.ListGrupoUsuario;
+﻿using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.ListGrupoUsuario;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -12,7 +12,7 @@ namespace FCG.WebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize(Policy = "ADMINISTRADOR")]
     public class GrupoUsuarioController : ControllerBase
     {
         private readonly IMediator _mediator;

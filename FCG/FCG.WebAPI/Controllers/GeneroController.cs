@@ -1,9 +1,9 @@
 ﻿// Dependências
-using FCG.ApplicationCore.Feature.Jogo.Commands.AddGenero;
-using FCG.ApplicationCore.Feature.Jogo.Commands.DeleteGenero;
-using FCG.ApplicationCore.Feature.Jogo.Commands.EditGenero;
-using FCG.ApplicationCore.Feature.Jogo.Queries.GetGenero;
-using FCG.Domain.Entities;
+
+using FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditJGenero;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +15,8 @@ namespace FCG.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "ADMINISTRADOR")]
-    public class GeneroController : BaseController
+    [Authorize(Policy = "ADMINISTRADOR")]
+    public class GeneroController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -25,7 +25,7 @@ namespace FCG.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirGenero(AddGeneroCommand addGeneroCommand)
         {
             var genero = await _mediator.Send(addGeneroCommand);
@@ -33,7 +33,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("IncluirGenero", genero);
         }
 
-        [HttpPut()]
+        [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarGenero([FromBody] EditGeneroCommand editGeneroCommand)
         {
             var genero = await _mediator.Send(editGeneroCommand);
@@ -41,7 +41,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("AlterarGenero", genero);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarGenero(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteGeneroCommand { Id = id });
@@ -53,12 +53,24 @@ namespace FCG.WebAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterGenero(int id)
         {
             var genero = await _mediator.Send(new GetGeneroQuery { Id = id });
 
             return CreatedAtAction("ObterGenero", genero);
+        }
+
+        /// <summary>
+        /// Obter todos gêneros
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosGeneros()
+        {
+            var genero = await _mediator.Send(new GetAllGeneroQuery());
+
+            return Ok(genero);
         }
     }
 }

@@ -1,12 +1,10 @@
-﻿using MediatR;
+﻿using FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// Dependências
-using FCG.ApplicationCore.Feature.Jogo.Commands.AddPlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Commands.DeletePlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Commands.EditPlataforma;
-using FCG.ApplicationCore.Feature.Jogo.Queries.GetPlataforma;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -15,8 +13,8 @@ namespace FCG.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "ADMINISTRADOR")]
-    public class PlataformaController : BaseController
+    [Authorize(Policy = "ADMINISTRADOR")]
+    public class PlataformaController : ControllerBase
     {
         private readonly IMediator _mediator;
 
@@ -25,7 +23,7 @@ namespace FCG.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirPlataforma(AddPlataformaCommand addPlataformaCommand)
         {
             var plataforma = await _mediator.Send(addPlataformaCommand);
@@ -33,7 +31,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("IncluirPlataforma", plataforma);
         }
 
-        [HttpPut()]
+        [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarPlataforma([FromBody] EditPlataformaCommand editPlataformaCommand)
         {
             var plataforma = await _mediator.Send(editPlataformaCommand);
@@ -41,7 +39,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("AlterarPlataforma", plataforma);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarPlataforma(int id)
         {
             var isDeleted = await _mediator.Send(new DeletePlataformaCommand { Id = id });
@@ -53,12 +51,24 @@ namespace FCG.WebAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterPlataforma(int id)
         {
             var plataforma = await _mediator.Send(new GetPlataformaQuery { Id = id });
 
             return CreatedAtAction("ObterPlataforma", plataforma);
+        }
+
+        /// <summary>
+        /// Obter todas plataformas
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosPlataformas()
+        {
+            var genero = await _mediator.Send(new GetAllPlataformaQuery());
+
+            return Ok(genero);
         }
     }
 }

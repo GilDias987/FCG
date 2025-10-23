@@ -1,12 +1,10 @@
-﻿using MediatR;
+﻿using FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// Dependências
-using FCG.ApplicationCore.Feature.Usuario.Commands.AddUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.DeleteUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Commands.EditUsuario;
-using FCG.ApplicationCore.Feature.Usuario.Queries.GetUsuario;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -15,7 +13,7 @@ namespace FCG.WebAPI.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
-    //[Authorize(Policy = "ADMINISTRADOR")]
+    [Authorize(Policy = "ADMINISTRADOR")]
     public class UsuarioController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -30,7 +28,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="addUsuarioCommand"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirUsuario(AddUsuarioCommand addUsuarioCommand)
         {
             var usuario = await _mediator.Send(addUsuarioCommand);
@@ -43,7 +41,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="editUsuarioCommand"></param>
         /// <returns></returns>
-        [HttpPut()]
+        [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarUsuario([FromBody] EditUsuarioCommand editUsuarioCommand)
         {
             var usuario = await _mediator.Send(editUsuarioCommand);
@@ -56,7 +54,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarUsuario(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteUsuarioCommand { Id = id });
@@ -73,10 +71,22 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterUsuario(int id)
         {
             var usuario = await _mediator.Send(new GetUsuarioQuery { Id = id });
+
+            return Ok(usuario);
+        }
+
+        /// <summary>
+        /// Obter todos Usuários
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosUsuarios()
+        {
+            var usuario = await _mediator.Send(new GetAllUsuarioQuery());
 
             return Ok(usuario);
         }

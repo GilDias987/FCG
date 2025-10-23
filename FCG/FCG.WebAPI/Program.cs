@@ -1,17 +1,15 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Scalar.AspNetCore;
 using System.Text;
 
 // Dependências
-using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Interface.Service;
-using FCG.ApplicationCore.Registration;
-using FCG.ApplicationCore.Service;
+
 using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository;
 using FCG.WebAPI.Middeware;
+using FCG.ApplicationCore.Interface.Repository;
+using FCG.ApplicationCore.Registration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +21,23 @@ var configuration = new ConfigurationBuilder()
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+//builder.Services.AddOpenApi();
+builder.Services.AddOpenApiDocument(options =>
+{
+    options.Title = "Api - Fiap Cloud Game";
+    options.Version = "1.0";
+    options.AddSecurity("Bearer", new NSwag.OpenApiSecurityScheme
+    {
+        Description = "Bearer token authorization header",
+        Type = NSwag.OpenApiSecuritySchemeType.Http,
+        In = NSwag.OpenApiSecurityApiKeyLocation.Header,
+        Name = "Authorization",
+        Scheme = "Bearer"
+    });
+
+    options.OperationProcessors.Add(
+        new NSwag.Generation.Processors.Security.AspNetCoreOperationSecurityScopeProcessor("Bearer"));
+});
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
     options.UseSqlServer(configuration.GetConnectionString("ConnectionStrings"));
@@ -65,7 +79,7 @@ builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IUsuarioJogoRepository, UsuarioJogoRepository>();
 #endregion
 
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddProblemDetails();
@@ -80,19 +94,13 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseOpenApi();
 
-    app.UseSwaggerUI(options =>
-    {
-        options.SwaggerEndpoint("/openapi/v1.json", "OpenAPI V1");
-    });
+    app.UseSwaggerUI();
 
-    app.UseReDoc(options =>
-    {
-        options.SpecUrl("/openapi/v1.json");
-    });
 
-    app.MapScalarApiReference();
+
+
 }
 
 app.UseHttpsRedirection();

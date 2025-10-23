@@ -120,5 +120,10 @@ namespace FCG.Infrastructure.Repository.Base
             _context.Entry(entidade).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// All
+        /// </summary>
+        public IQueryable<T> All => _context.Set<T>();
     }
 }

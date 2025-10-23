@@ -1,10 +1,11 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using FCG.Application.UseCases.Feature.Usuario.Queries;
+using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 // Dependências
-using FCG.ApplicationCore.Feature.Usuario.Queries;
+
 
 namespace FCG.WebAPI.Authentication
 {

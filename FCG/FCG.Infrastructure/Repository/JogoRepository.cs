@@ -19,7 +19,7 @@ namespace FCG.Infrastructure.Repository
         }
 
         /// <summary>
-        /// GetJogo \ Genero \ Plataforma
+        /// GetJogoIdAsync \ Gênero \ Plataforma
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
