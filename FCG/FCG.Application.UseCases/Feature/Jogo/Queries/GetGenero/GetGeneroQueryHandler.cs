@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
 // Dependências
-using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Dto.Jogo;
+using FCG.ApplicationCore.Interface.Repository;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
 {
@@ -16,7 +16,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
         }
 
         /// <summary>
-        /// GetGenero
+        /// GetByIdAsync
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
@@ -26,12 +26,13 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
         {
             try
             {
-                var genero  = await _generoRepository.GetGeneroIdAsync(request.Id);
+                var genero  = await _generoRepository.GetByIdAsync(request.Id);
                 if (genero is null)
                 {
                     throw new ArgumentException("Gênero não encontrado.");
                 }
 
+                // Dto
                 return new GeneroDto { Id = genero.Id, Titulo = genero.Titulo};
             }
             catch (Exception)

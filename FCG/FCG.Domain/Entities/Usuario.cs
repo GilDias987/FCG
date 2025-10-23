@@ -16,11 +16,21 @@ namespace FCG.Domain.Entities
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
+        /// <summary>
+        /// Usuário
+        /// </summary>
         public Usuario()
         {
 
         }
 
+        /// <summary>
+        /// Usuário
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="email"></param>
+        /// <param name="senha"></param>
+        /// <param name="grupoUsuarioId"></param>
         public Usuario(string nome, Email email, Senha senha, int grupoUsuarioId)
         {
             Inicializar(nome, email, senha, grupoUsuarioId);

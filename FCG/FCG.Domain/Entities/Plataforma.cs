@@ -10,6 +10,10 @@
         public ICollection<Jogo> Jogos { get; set; }
         #endregion
 
+        /// <summary>
+        /// Plataforma
+        /// </summary>
+        /// <param name="titulo"></param>
         public Plataforma(string titulo) 
         {
             Titulo = titulo;

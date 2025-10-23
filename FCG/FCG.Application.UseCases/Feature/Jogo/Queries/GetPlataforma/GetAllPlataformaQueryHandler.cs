@@ -1,16 +1,17 @@
-﻿using MediatR;
-
-// Dependências
+﻿// Dependências
 using FCG.ApplicationCore.Dto.Jogo;
 using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Entities;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma
 {
-    public class GetPlataformaQueryHandler : IRequestHandler<GetPlataformaQuery, PlataformaDto>
+    public class GetAllPlataformaQueryHandler : IRequestHandler<GetAllPlataformaQuery, List<PlataformaDto>>
     {
         private readonly IPlataformaRepository _plataformaRepository;
 
-        public GetPlataformaQueryHandler(IPlataformaRepository plataformaRepository)
+        public GetAllPlataformaQueryHandler(IPlataformaRepository plataformaRepository)
         {
             _plataformaRepository = plataformaRepository;
         }
@@ -22,18 +23,21 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public async Task<PlataformaDto> Handle(GetPlataformaQuery request, CancellationToken cancellationToken)
+        public async Task<List<PlataformaDto>> Handle(GetAllPlataformaQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var plataforma = await _plataformaRepository.GetByIdAsync(request.Id);
-                if (plataforma is null)
+                var plataforma = await _plataformaRepository.All.Select(s => new PlataformaDto 
                 {
-                    throw new ArgumentException("Plataforma não encontrada.");
+                    Id = s.Id, Titulo = s.Titulo,
+                }).ToListAsync();
+
+                if (!plataforma.Any())
+                {
+                    throw new ArgumentException("Nenhum registro encontrado.");
                 }
 
-                // Dto
-                return new PlataformaDto { Id = plataforma.Id, Titulo = plataforma.Titulo};
+                return plataforma;
             }
             catch (Exception)
             {

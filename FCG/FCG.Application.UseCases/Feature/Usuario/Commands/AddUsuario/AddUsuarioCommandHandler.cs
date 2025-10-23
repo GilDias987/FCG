@@ -3,7 +3,6 @@
 // Dependências
 using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Dto.Jogo;
 using FCG.Domain.ValueObjects;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario
@@ -38,7 +37,6 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario
             if (repUsuarioGrupo is false)
                 throw new ArgumentException("O Grupo de usuário não foi encontrado.");
 
-            // Usando ServiceResponse
             try
             {
                 var objUsuario = await _usuarioRepository.AddAsync(new Domain.Entities.Usuario(request.Nome, new Email( request.Email),new Senha(request.Senha), request.UsuarioGrupoId));

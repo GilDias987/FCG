@@ -4,7 +4,7 @@ namespace FCG.Domain.ValueObjects
 {
     public record class Email
     {
-        public  string Endereco { get; }
+        public string Endereco { get; }
 
         public Email()
         {

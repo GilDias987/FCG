@@ -26,7 +26,7 @@ namespace FCG.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirJogo(AddJogoCommand addJogoCommand)
         {
             var jogo = await _mediator.Send(addJogoCommand);
@@ -34,7 +34,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("IncluirJogo", jogo);
         }
 
-        [HttpPut()]
+        [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarJogo([FromBody] EditJogoCommand editJogoCommand)
         {
             var jogo = await _mediator.Send(editJogoCommand);
@@ -42,7 +42,7 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("AlterarJogo", jogo);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarJogo(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteJogoCommand { Id = id });
@@ -54,12 +54,24 @@ namespace FCG.WebAPI.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterJogo(int id)
         {
             var jogo = await _mediator.Send(new GetJogoQuery { Id = id });
 
             return CreatedAtAction("ObterJogo", jogo);
+        }
+
+        /// <summary>
+        /// Obter todos jogos
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosJogos()
+        {
+            var jogo = await _mediator.Send(new GetAllJogoQuery());
+
+            return Ok(jogo);
         }
     }
 }
