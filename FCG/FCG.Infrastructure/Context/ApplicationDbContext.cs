@@ -49,6 +49,5 @@ namespace FCG.Infrastructure.Context
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
-
     }
 }

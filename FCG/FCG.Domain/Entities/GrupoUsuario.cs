@@ -10,6 +10,10 @@
         public ICollection<Usuario>? Usuarios { get; set; }
         #endregion
 
+        /// <summary>
+        /// Grupo do usuário
+        /// </summary>
+        /// <param name="nome"></param>
         public GrupoUsuario(string nome)
         {
             Inicializar(nome);

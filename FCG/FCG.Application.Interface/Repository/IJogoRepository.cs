@@ -7,7 +7,7 @@ namespace FCG.ApplicationCore.Interface.Repository
     public interface IJogoRepository: IRepository<Jogo>
     {
         /// <summary>
-        /// GetJogo \ Genero \ Plataforma
+        /// GetJogoIdAsync \ Gênero \ Plataforma
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
