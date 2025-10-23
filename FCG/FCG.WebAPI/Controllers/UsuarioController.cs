@@ -28,7 +28,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="addUsuarioCommand"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirUsuario(AddUsuarioCommand addUsuarioCommand)
         {
             var usuario = await _mediator.Send(addUsuarioCommand);
@@ -41,7 +41,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="editUsuarioCommand"></param>
         /// <returns></returns>
-        [HttpPut()]
+        [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarUsuario([FromBody] EditUsuarioCommand editUsuarioCommand)
         {
             var usuario = await _mediator.Send(editUsuarioCommand);
@@ -54,7 +54,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpDelete("{id}")]
+        [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarUsuario(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteUsuarioCommand { Id = id });
@@ -71,10 +71,22 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
+        [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterUsuario(int id)
         {
             var usuario = await _mediator.Send(new GetUsuarioQuery { Id = id });
+
+            return Ok(usuario);
+        }
+
+        /// <summary>
+        /// Obter todos Usuários
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosUsuarios()
+        {
+            var usuario = await _mediator.Send(new GetAllUsuarioQuery());
 
             return Ok(usuario);
         }

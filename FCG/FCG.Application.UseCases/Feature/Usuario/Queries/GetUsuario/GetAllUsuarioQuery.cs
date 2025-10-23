@@ -5,8 +5,7 @@ using FCG.ApplicationCore.Dto.Usuario;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario
 {
-    public class GetUsuarioQuery : IRequest<UsuarioDto>
+    public class GetAllUsuarioQuery : IRequest<List<UsuarioDto>>
     {
-        public int Id { get; set; }
     }
 }

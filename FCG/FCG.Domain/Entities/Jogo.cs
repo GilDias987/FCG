@@ -17,10 +17,22 @@
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
+        /// <summary>
+        /// Jogo
+        /// </summary>
         public Jogo()
         { 
         }
 
+        /// <summary>
+        /// Jogo
+        /// </summary>
+        /// <param name="titulo"></param>
+        /// <param name="descricao"></param>
+        /// <param name="preco"></param>
+        /// <param name="desconto"></param>
+        /// <param name="generoId"></param>
+        /// <param name="plataformaId"></param>
         public Jogo(string titulo, string descricao, decimal preco, decimal desconto, int generoId, int plataformaId)
         {
             Titulo = titulo;

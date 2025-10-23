@@ -1,12 +1,12 @@
 ﻿using MediatR;
 
 // Dependências
+using FCG.ApplicationCore.Dto.Jogo;
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.Application.UseCases.Feature.Jogo.Queries;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo
 {
-    public class GetJogoQueryHandler : IRequestHandler<GetJogoQuery, GetJogoResponse>
+    public class GetJogoQueryHandler : IRequestHandler<GetJogoQuery, JogoDto>
     {
         private readonly IJogoRepository _jogoRepository;
 
@@ -16,25 +16,23 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo
         }
 
         /// <summary>
-        /// GetJogo
+        /// GetJogoIdAsync
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public async Task<GetJogoResponse> Handle(GetJogoQuery request, CancellationToken cancellationToken)
+        public async Task<JogoDto> Handle(GetJogoQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                int p = Convert.ToInt32("Priquitão");
-
                 var jogo = await _jogoRepository.GetJogoIdAsync(request.Id);
                 if (jogo is null)
                 {
                     throw new ArgumentException("Jogo não encontrado.");
                 }
 
-                return new GetJogoResponse { Id = jogo.Id, Titulo = jogo.Titulo, Descricao = jogo.Descricao, Preco = jogo.Preco, Desconto = jogo.Desconto };
+                return new JogoDto { Id = jogo.Id, Titulo = jogo.Titulo, Descricao = jogo.Descricao, Preco = jogo.Preco, Desconto = jogo.Desconto };
             }
             catch (Exception)
             {

@@ -2,11 +2,11 @@
 
 // Dependências
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.Application.UseCases.Feature.Usuario.Queries;
+using FCG.ApplicationCore.Dto.Usuario;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario
 {
-    public class GetUsuarioQueryHandler : IRequestHandler<GetUsuarioQuery, GetUsuarioResponse>
+    public class GetUsuarioQueryHandler : IRequestHandler<GetUsuarioQuery, UsuarioDto>
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
@@ -15,7 +15,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<GetUsuarioResponse> Handle(GetUsuarioQuery request, CancellationToken cancellationToken)
+        public async Task<UsuarioDto> Handle(GetUsuarioQuery request, CancellationToken cancellationToken)
         {
             var usuario = await _usuarioRepository.GetUsuarioAsync(request.Id);
             if (usuario is null)
@@ -23,7 +23,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario
                 throw new ArgumentException("Usuário não encontrado.");
             }
 
-            return new GetUsuarioResponse { Id = usuario.Id, Email = usuario.Email.Endereco, Nome = usuario.Nome, Grupo = usuario.GrupoUsuario.Nome };
+            return new UsuarioDto { Id = usuario.Id, Email = usuario.Email.Endereco, Nome = usuario.Nome, GrupoUsuarioId = usuario.GrupoUsuarioId };
         }
     }
 }

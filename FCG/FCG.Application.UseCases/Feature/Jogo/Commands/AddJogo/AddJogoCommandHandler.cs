@@ -26,7 +26,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo
                 throw new ArgumentException("O Gênero do jogo não foi encontrado.");
 
             // Usando FluentValidation
-            var repPlataforma = await _plataformaRepository.GetByIdExistsAsync(request.GeneroId);
+            var repPlataforma = await _plataformaRepository.GetByIdExistsAsync(request.PlataformaId);
             if (repPlataforma is false)
                 throw new ArgumentException("A Plataforma do jogo não foi encontrado.");
 

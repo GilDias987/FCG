@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FCG.Domain.Entities
+﻿namespace FCG.Domain.Entities
 {
     public class Genero : BaseEntity
     {
@@ -12,6 +10,10 @@ namespace FCG.Domain.Entities
         public ICollection<Jogo> Jogos { get; set; }
         #endregion
 
+        /// <summary>
+        /// Gênero
+        /// </summary>
+        /// <param name="titulo"></param>
         public Genero(string titulo)
         {
             Titulo = titulo;
