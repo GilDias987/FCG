@@ -15,7 +15,7 @@ namespace FCG.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Policy = "ADMINISTRADOR")]
+    [Authorize(Policy = "ADMINISTRADOR")]
     public class GeneroController : ControllerBase
     {
         private readonly IMediator _mediator;

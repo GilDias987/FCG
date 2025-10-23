@@ -17,6 +17,7 @@ namespace FCG.Infrastructure.Configuration
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
             builder.Property(p => p.GrupoUsuarioId).HasColumnType("INT").HasColumnName("ISN_GRUPO");
+            
             #region Value Object
          
             builder.OwnsOne(p => p.Email, nbuilder =>
