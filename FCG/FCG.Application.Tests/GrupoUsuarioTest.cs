@@ -166,7 +166,7 @@ namespace FCG.Application.Tests
             var grupoUsuaro = new EditGrupoUsuarioCommand { Id = 1, Nome = "MASTER" };
             var validator = new EditGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
-            // Act
+            // Act 
 
             _grupoUsuarioRepositoryMock
                 .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
