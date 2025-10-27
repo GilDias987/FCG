@@ -23,7 +23,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
                 throw argumentException;
 
             var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim());
-
+             
             if (!senhaValida)
                 throw argumentException;
 
