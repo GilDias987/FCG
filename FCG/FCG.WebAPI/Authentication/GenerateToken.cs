@@ -1,4 +1,5 @@
 ﻿using FCG.Application.UseCases.Feature.Usuario.Queries;
+using FCG.ApplicationCore.Dto.Usuario;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -17,7 +18,7 @@ namespace FCG.WebAPI.Authentication
         {
             _configuration = configuration;
         }
-        public string GenerateToken(GetUsuarioResponse usuario)
+        public string GenerateToken(UsuarioDto usuario)
         {
             var claims = new[]
             {

@@ -4,7 +4,7 @@
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Dto.Jogo;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma
+namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma
 {
     public class EditPlataformaCommandHandler : IRequestHandler<EditPlataformaCommand, PlataformaDto>
     {

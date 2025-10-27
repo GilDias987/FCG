@@ -3,7 +3,7 @@
 // Dependências
 using FCG.ApplicationCore.Dto.Jogo;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma
+namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma
 {
     public class EditPlataformaCommand : IRequest<PlataformaDto>
     {
