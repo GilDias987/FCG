@@ -16,19 +16,14 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario
 
         public async Task<bool> Handle(DeleteGrupoUsuarioCommand request, CancellationToken cancellationToken)
         {
-            var repGrupoUsuario  = await _grupoUsuarioRepository.GetByIdAsync(request.Id);
-            if (repGrupoUsuario != null)
-            {
-                await _grupoUsuarioRepository.DeleteAsync(repGrupoUsuario.Id);
+            var repGrupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(request.Id);
 
-                return true;
-            }
-            else
-            {
-                return false;
-
+            if (repGrupoUsuario == null)
                 throw new ArgumentException("Grupo de usuário não foi encontrado.");
-            }
+
+            await _grupoUsuarioRepository.DeleteAsync(repGrupoUsuario.Id);
+            return true;
+
         }
     }
 }

@@ -23,9 +23,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero
                 return true;
             }
             else
-            {
-                return false;
-
+            { 
                 throw new ArgumentException("Gênero não foi encontrado.");
             }
         }
