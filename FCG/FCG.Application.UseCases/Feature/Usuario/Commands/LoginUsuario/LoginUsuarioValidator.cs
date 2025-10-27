@@ -1,7 +1,7 @@
 ﻿using FCG.ApplicationCore.Interface.Repository;
 using FluentValidation;
 
-namespace FCG.Application.UseCases.Feature.Usuario.Queries.LoginUsuario
+namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
 {
     public sealed class LoginUsuarioValidator : AbstractValidator<LoginUsuarioRequest>
     {

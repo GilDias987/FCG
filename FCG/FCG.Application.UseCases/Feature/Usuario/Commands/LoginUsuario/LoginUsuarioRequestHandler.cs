@@ -1,9 +1,8 @@
-﻿using FCG.Application.UseCases.Feature.Usuario.Queries;
-using FCG.ApplicationCore.Dto.Usuario;
+﻿using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 using MediatR;
 
-namespace FCG.Application.UseCases.Feature.Usuario.Queries.LoginUsuario
+namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
 {
     public class LoginUsuarioRequestHandler : IRequestHandler<LoginUsuarioRequest, UsuarioDto>
     {
