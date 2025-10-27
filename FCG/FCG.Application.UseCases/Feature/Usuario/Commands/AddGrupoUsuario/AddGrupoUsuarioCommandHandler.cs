@@ -1,12 +1,12 @@
 ﻿using MediatR;
 
 // Dependências
+using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entities;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario
 {
-    public class AddGrupoUsuarioCommandHandler : IRequestHandler<AddGrupoUsuarioCommand, int>
+    public class AddGrupoUsuarioCommandHandler : IRequestHandler<AddGrupoUsuarioCommand, GrupoUsuarioDto>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
 
@@ -15,11 +15,19 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario
             _grupoUsuarioRepository = grupoUsuarioRepository;
         }
 
-        public async Task<int> Handle(AddGrupoUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<GrupoUsuarioDto> Handle(AddGrupoUsuarioCommand request, CancellationToken cancellationToken)
         {
-            var grupo = new GrupoUsuario(request.Nome);
-            var retGrupo = await _grupoUsuarioRepository.AddAsync(grupo);
-            return retGrupo.Id;
+
+            try
+            {
+                var objGenero = await _grupoUsuarioRepository.AddAsync(new Domain.Entities.GrupoUsuario(request.Nome));
+
+                return new GrupoUsuarioDto() { Id = objGenero.Id, Nome = objGenero.Nome };
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ao cadastrar o Grupo de usuário ocorreu uma falha inesperada. Tente novamente mais tarde.");
+            }
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿// Dependências
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+// Dependências
 using FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -26,6 +27,11 @@ namespace FCG.WebAPI.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Incluir
+        /// </summary>
+        /// <param name="addJogoCommand"></param>
+        /// <returns></returns>
         [HttpPost("Incluir")]
         public async Task<IActionResult> IncluirJogo(AddJogoCommand addJogoCommand)
         {
@@ -34,6 +40,11 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("IncluirJogo", jogo);
         }
 
+        /// <summary>
+        /// Alterar
+        /// </summary>
+        /// <param name="editJogoCommand"></param>
+        /// <returns></returns>
         [HttpPut("Alterar")]
         public async Task<IActionResult> AlterarJogo([FromBody] EditJogoCommand editJogoCommand)
         {
@@ -42,6 +53,11 @@ namespace FCG.WebAPI.Controllers
             return CreatedAtAction("AlterarJogo", jogo);
         }
 
+        /// <summary>
+        /// Deletar
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("Deletar{id}")]
         public async Task<IActionResult> DeletarJogo(int id)
         {
@@ -54,6 +70,11 @@ namespace FCG.WebAPI.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Obter
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("Obter{id}")]
         public async Task<IActionResult> ObterJogo(int id)
         {
