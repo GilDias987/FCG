@@ -1,7 +1,8 @@
-﻿// Dependências
+﻿using MediatR;
+
+// Dependências
 using FCG.ApplicationCore.Dto.Jogo;
 using FCG.ApplicationCore.Interface.Repository;
-using MediatR;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero
 {
