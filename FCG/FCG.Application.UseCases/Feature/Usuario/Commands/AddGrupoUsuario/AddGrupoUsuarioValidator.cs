@@ -15,7 +15,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario
             RuleFor(x => x.Nome)
               .NotEmpty()
               .WithMessage("Informe o nome do grupo.")
-              .MustAsync(async (Nome, cancellation) => string.IsNullOrEmpty(Nome) ? true : !(await _grupoUsuarioRepository.VerificarSeExisteGrupoAsync(Nome))) // Chame seu método aqui
+              .MustAsync(async (Nome, cancellation) => string.IsNullOrEmpty(Nome) ? true : !(await _grupoUsuarioRepository.VerificarSeExisteGrupoAsync(Nome)))
               .WithMessage("Já existe um grupo de usuário com esse nome.");
 
         }

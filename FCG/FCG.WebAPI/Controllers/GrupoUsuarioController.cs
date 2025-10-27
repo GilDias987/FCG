@@ -1,12 +1,12 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-// Dependências
+﻿// Dependências
 using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -30,7 +30,6 @@ namespace FCG.WebAPI.Controllers
         public async Task<IActionResult> IncluirGrupoUsuario([FromBody] AddGrupoUsuarioCommand addGrupoUsuarioCommand)
         {
             var grupoUsuario = await _mediator.Send(addGrupoUsuarioCommand);
-
             return CreatedAtAction("IncluirGrupoUsuario", grupoUsuario);
         }
 
@@ -43,8 +42,7 @@ namespace FCG.WebAPI.Controllers
         public async Task<IActionResult> AlterarGrupoUsuario([FromBody] EditGrupoUsuarioCommand editGrupoUsuarioCommand)
         {
             var grupoUsuario = await _mediator.Send(editGrupoUsuarioCommand);
-
-            return CreatedAtAction("AlterarGrupoUsuario", grupoUsuario);
+            return Ok(grupoUsuario);
         }
 
         /// <summary>
@@ -56,6 +54,7 @@ namespace FCG.WebAPI.Controllers
         public async Task<ActionResult> DeletarGrupoUsuario(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteGrupoUsuarioCommand { Id = id });
+           
             if (isDeleted)
             {
                 return Ok("Grupo de Usuario foi deletado com sucesso.");

@@ -17,21 +17,15 @@ namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
 
         public async Task<GrupoUsuarioDto> Handle(GetGrupoUsuarioQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var grupoUsuario  = await _grupoUsuarioRepository.GetByIdAsync(request.Id);
-                if (grupoUsuario is null)
-                {
-                    throw new ArgumentException("Grupo de usuário não encontrado.");
-                }
 
-                // Dto
-                return new GrupoUsuarioDto { Id = grupoUsuario.Id, Nome = grupoUsuario.Nome };
-            }
-            catch (Exception)
+            var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(request.Id);
+            
+            if (grupoUsuario is null)
             {
-                throw new Exception("Ocorreu uma falha inesperada. Tente novamente mais tarde.");
+                throw new ArgumentException("Grupo de usuário não encontrado.");
             }
+
+            return new GrupoUsuarioDto { Id = grupoUsuario.Id, Nome = grupoUsuario.Nome };
         }
     }
 }
