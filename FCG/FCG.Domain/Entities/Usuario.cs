@@ -1,4 +1,6 @@
-﻿using FCG.Domain.ValueObjects;
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+using FCG.Domain.ValueObjects;
 
 namespace FCG.Domain.Entities
 {
@@ -16,21 +18,11 @@ namespace FCG.Domain.Entities
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
-        /// <summary>
-        /// Usuário
-        /// </summary>
         public Usuario()
         {
 
         }
 
-        /// <summary>
-        /// Usuário
-        /// </summary>
-        /// <param name="nome"></param>
-        /// <param name="email"></param>
-        /// <param name="senha"></param>
-        /// <param name="grupoUsuarioId"></param>
         public Usuario(string nome, Email email, Senha senha, int grupoUsuarioId)
         {
             Inicializar(nome, email, senha, grupoUsuarioId);
@@ -38,33 +30,17 @@ namespace FCG.Domain.Entities
 
         public void Inicializar(string nome, Email email, Senha senha, int grupoUsuarioId)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(nome))
-                {
-                    throw new ArgumentException("O nome do usuário não pode ser vazio.");
-                }
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(nome), "O nome do usuário não pode ser vazio.");
+            Guard.AgainstEmptyId(grupoUsuarioId, "Grupo Usuario Id");
 
-                Nome  = nome.Trim();
-                GrupoUsuarioId = grupoUsuarioId;
-            }
-            catch(ArgumentException ex)
-            {
-                throw ex;
-            }
+            Nome = nome.Trim();
+            GrupoUsuarioId = grupoUsuarioId;
+
         }
 
         public bool ValidarSenha(string senha)
         {
-            try
-            {
-                return Senha.Verificar(senha);
-                
-            }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
+            return Senha.Verificar(senha);
         }
     }
 }

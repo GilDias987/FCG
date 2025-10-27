@@ -1,4 +1,7 @@
-﻿namespace FCG.Domain.Entities
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+
+namespace FCG.Domain.Entities
 {
     public class GrupoUsuario : BaseEntity
     {   
@@ -21,19 +24,8 @@
 
         public void Inicializar(string nome)
         {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(nome))
-                {
-                    throw new ArgumentException("O nome do grupo não pode ser vazio.");
-                }
-
-                Nome = nome.Trim();
-            }
-            catch (ArgumentException ex)
-            {
-                throw ex;
-            }
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(nome), "O nome do grupo não pode ser vazio.");
+            Nome = nome.Trim();
         }
     }
 }
