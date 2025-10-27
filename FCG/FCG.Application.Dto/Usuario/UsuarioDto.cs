@@ -6,5 +6,6 @@
         public string Nome { get; set; }
         public string Email { get; set; }
         public int GrupoUsuarioId { get; set; }
+        public string Grupo { get; set; }
     }
 }
