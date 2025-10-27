@@ -1,4 +1,8 @@
-﻿namespace FCG.Domain.Entities
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+using System.Runtime.ConstrainedExecution;
+
+namespace FCG.Domain.Entities
 {
     public class Genero : BaseEntity
     {
@@ -10,13 +14,15 @@
         public ICollection<Jogo> Jogos { get; set; }
         #endregion
 
-        /// <summary>
-        /// Gênero
-        /// </summary>
-        /// <param name="titulo"></param>
         public Genero(string titulo)
         {
-            Titulo = titulo;
+            Inicializar(titulo);
+        }
+
+        public void Inicializar(string titulo)
+        {
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(titulo), "O titulo do genero não pode ser vazio.");
+            Titulo = titulo.Trim();
         }
     }
 }

@@ -24,8 +24,6 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo
             }
             else
             {
-                return false;
-
                 throw new ArgumentException("Jogo não foi encontrado.");
             }
         }
