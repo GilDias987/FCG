@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+using System.Text.RegularExpressions;
 
 namespace FCG.Domain.ValueObjects
 {
@@ -25,8 +27,8 @@ namespace FCG.Domain.ValueObjects
         /// <exception cref="ArgumentException"></exception>
         private static void ValidarEmailDominio(string value)
         {
-            if (!Regex.IsMatch(value, @"@(fiap\.com\.br|alura\.com\.br|pm3\.com\.br)$"))
-                throw new ArgumentException("E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.");
+            Guard.Against<DomainException>(!Regex.IsMatch(value, @"@(fiap\.com\.br|alura\.com\.br|pm3\.com\.br)$"),
+                                                                    "E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.");
         }
 
         /// <summary>
@@ -36,8 +38,7 @@ namespace FCG.Domain.ValueObjects
         /// <exception cref="ArgumentException"></exception>
         private static void ValidarEmail(string value)
         {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException("E-mail não pode ser vazio.");
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(value), "E-mail não pode ser vazio.");
         }
 
         public string ObterDominio()

@@ -1,4 +1,7 @@
-﻿namespace FCG.Domain.Entities
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+
+namespace FCG.Domain.Entities
 {
     public class Plataforma : BaseEntity
     {
@@ -10,13 +13,15 @@
         public ICollection<Jogo> Jogos { get; set; }
         #endregion
 
-        /// <summary>
-        /// Plataforma
-        /// </summary>
-        /// <param name="titulo"></param>
         public Plataforma(string titulo) 
         {
-            Titulo = titulo;
+            Inicializar(titulo);
+        }
+
+        public void Inicializar(string titulo)
+        {
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(titulo), "O titulo da plataforma não pode ser vazio.");
+            Titulo = titulo.Trim();
         }
     }
 }

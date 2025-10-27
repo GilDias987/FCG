@@ -13,6 +13,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo
         {
             _jogoRepository = jogoRepository;
         }
+
         public async Task<bool> Handle(DeleteJogoCommand request, CancellationToken cancellationToken)
         {
             var repJogo  = await _jogoRepository.GetByIdAsync(request.Id);
@@ -24,8 +25,6 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo
             }
             else
             {
-                return false;
-
                 throw new ArgumentException("Jogo não foi encontrado.");
             }
         }

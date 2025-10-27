@@ -1,11 +1,11 @@
-﻿using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
+﻿// Dependências
+using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Queries.ListGrupoUsuario;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
@@ -21,77 +21,71 @@ namespace FCG.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AdicionarGrupoUsuario([FromBody] AddGrupoUsuarioCommand addGrupoUsuarioCommand)
+        /// <summary>
+        /// Incluir
+        /// </summary>
+        /// <param name="addGrupoUsuarioCommand"></param>
+        /// <returns></returns>
+        [HttpPost("Incluir")]
+        public async Task<IActionResult> IncluirGrupoUsuario([FromBody] AddGrupoUsuarioCommand addGrupoUsuarioCommand)
         {
-            try
-            {
-                var grupoUsuarioId = await _mediator.Send(addGrupoUsuarioCommand);
-                var grupo = await ObterGrupoUsuario(grupoUsuarioId, true);
-                return grupo;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var grupoUsuario = await _mediator.Send(addGrupoUsuarioCommand);
+            return CreatedAtAction("IncluirGrupoUsuario", grupoUsuario);
         }
 
-        [HttpPut()]
-        public async Task<IActionResult> EditarGrupoUsuario([FromBody] EditGrupoUsuarioCommand editGrupoUsuarioCommand)
+        /// <summary>
+        /// Altearar
+        /// </summary>
+        /// <param name="editGrupoUsuarioCommand"></param>
+        /// <returns></returns>
+        [HttpPut("Alterar")]
+        public async Task<IActionResult> AlterarGrupoUsuario([FromBody] EditGrupoUsuarioCommand editGrupoUsuarioCommand)
         {
-            try
-            {
-                var grupoUsuarioId = await _mediator.Send(editGrupoUsuarioCommand);
-                var grupo = await ObterGrupoUsuario(grupoUsuarioId);
-                return grupo;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var grupoUsuario = await _mediator.Send(editGrupoUsuarioCommand);
+            return Ok(grupoUsuario);
         }
 
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// Deletar
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("Deletar{id}")]
         public async Task<ActionResult> DeletarGrupoUsuario(int id)
         {
-            try
+            var isDeleted = await _mediator.Send(new DeleteGrupoUsuarioCommand { Id = id });
+           
+            if (isDeleted)
             {
-                await _mediator.Send(new DeleteGrupoUsuarioCommand { Id = id });
-                return Ok("Grupo de Usuario deletado com sucesso");
+                return Ok("Grupo de Usuario foi deletado com sucesso.");
             }
-            catch (Exception)
-            {
-                throw;
-            }
+
+            return NotFound();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObterGrupoUsuario(int id, bool isCreate = false)
+        /// <summary>
+        /// Obter
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("Obter{id}")]
+        public async Task<IActionResult> ObterGrupoUsuario(int id)
         {
-            try
-            {
-                var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioQuery { Id = id});
-                return isCreate? Created("ObterGrupo", grupoUsuario) : Ok(grupoUsuario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            var grupoUsuario = await _mediator.Send(new GetGrupoUsuarioQuery { Id = id });
+
+            return CreatedAtAction("ObterGrupoUsuario", grupoUsuario);
         }
 
-        [HttpGet("ListarGruposUsuario")]
-        public async Task<IActionResult> ListarGrupoUsuario()
+        /// <summary>
+        /// Obter todos grupos de usuários
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("ObterTodos")]
+        public async Task<IActionResult> ObterTodosGrupoUsuario()
         {
-            try
-            {
-                var lstGrupoUsuario = await _mediator.Send(new ListGrupoUsuarioRequest());
-                return Ok(lstGrupoUsuario);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+            var grupoUsuario = await _mediator.Send(new GetAllGrupoUsuarioQuery());
 
+            return Ok(grupoUsuario);
+        }
     }
 }

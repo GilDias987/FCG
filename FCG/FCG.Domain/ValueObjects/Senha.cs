@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using FCG.Domain.Common.Exceptions;
+using FCG.Domain.Common.Validations;
+using System.Text.RegularExpressions;
 
 namespace FCG.Domain.ValueObjects
 {
@@ -43,17 +45,10 @@ namespace FCG.Domain.ValueObjects
         /// </summary>
         private static void ValidarSenha(string senha)
         {
-            if (senha.Length < 8)
-                throw new ArgumentException("Senha deve ter pelo menos 8 caracteres.");
-
-            if (!Regex.IsMatch(senha, "[a-zA-Z]"))
-                throw new ArgumentException("Senha deve conter pelo menos uma letra.");
-
-            if (!Regex.IsMatch(senha, "[0-9]"))
-                throw new ArgumentException("Senha deve conter pelo menos um número.");
-
-            if (!Regex.IsMatch(senha, "[^a-zA-Z0-9]"))
-                throw new ArgumentException("Senha deve conter pelo menos um caractere especial.");
+            Guard.Against<DomainException>(senha.Length < 8, "Senha deve ter pelo menos 8 caracteres.");
+            Guard.Against<DomainException>(!Regex.IsMatch(senha, "[a-zA-Z]"), "Senha deve conter pelo menos uma letra.");
+            Guard.Against<DomainException>(!Regex.IsMatch(senha, "[0-9]"), "Senha deve conter pelo menos um número.");
+            Guard.Against<DomainException>(!Regex.IsMatch(senha, "[0-9]"), "Senha deve conter pelo menos um caractere especial.");
         }
 
     }

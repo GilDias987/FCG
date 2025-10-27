@@ -24,8 +24,6 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma
             }
             else
             {
-                return false;
-
                 throw new ArgumentException("Plataforma não foi encontrado.");
             }
         }

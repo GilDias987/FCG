@@ -1,12 +1,12 @@
-﻿// Dependências
-using FCG.Application.UseCases.Feature.Usuario.Queries;
+﻿using MediatR;
+
+// Dependências
+using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entities;
-using MediatR;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
 {
-    public class GetGrupoUsuarioQueryHandler : IRequestHandler<GetGrupoUsuarioQuery, GrupoUsuarioResponse>
+    public class GetGrupoUsuarioQueryHandler : IRequestHandler<GetGrupoUsuarioQuery, GrupoUsuarioDto>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
 
@@ -15,17 +15,17 @@ namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
             _grupoUsuarioRepository = grupoUsuarioRepository;
         }
 
-        public async Task<GrupoUsuarioResponse> Handle(GetGrupoUsuarioQuery request, CancellationToken cancellationToken)
+        public async Task<GrupoUsuarioDto> Handle(GetGrupoUsuarioQuery request, CancellationToken cancellationToken)
         {
+
             var grupoUsuario = await _grupoUsuarioRepository.GetByIdAsync(request.Id);
-          
+            
             if (grupoUsuario is null)
             {
                 throw new ArgumentException("Grupo de usuário não encontrado.");
             }
 
-            return new GrupoUsuarioResponse { Id = grupoUsuario.Id, Nome = grupoUsuario.Nome };
+            return new GrupoUsuarioDto { Id = grupoUsuario.Id, Nome = grupoUsuario.Nome };
         }
-
     }
 }
