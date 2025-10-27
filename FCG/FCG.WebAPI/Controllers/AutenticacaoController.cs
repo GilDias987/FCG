@@ -9,17 +9,17 @@ namespace FCG.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController : ControllerBase
+    public class AutenticacaoController : ControllerBase
     {
         private readonly IMediator _mediator;
         private readonly IConfiguration _configuration;
-        public LoginController(IMediator mediator, IConfiguration configuration) 
+        public AutenticacaoController(IMediator mediator, IConfiguration configuration) 
         {
             _mediator = mediator;
             _configuration = configuration;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginUsuarioRequest loginUsuarioRequest)
         {
             try

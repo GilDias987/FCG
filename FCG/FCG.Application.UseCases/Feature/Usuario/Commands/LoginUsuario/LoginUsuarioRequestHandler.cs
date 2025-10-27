@@ -15,12 +15,17 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
 
         public async Task<UsuarioDto> Handle(LoginUsuarioRequest request, CancellationToken cancellationToken)
         {
+            var argumentException = new ArgumentException("E-mail ou senha inválidos.");
+
             var usuarioEmail = await _usuarioRepository.UsuarioEmailAsync(request.Email.Trim());
+
+            if (usuarioEmail is null)
+                throw argumentException;
 
             var senhaValida = usuarioEmail.ValidarSenha(request.Senha.Trim());
 
             if (!senhaValida)
-                throw new ArgumentException("E-mail ou senha inválidos.");
+                throw argumentException;
 
             return new UsuarioDto { Id = usuarioEmail.Id, 
                                     Email = usuarioEmail.Email.Endereco, 
