@@ -5,8 +5,10 @@ using FCG.ApplicationCore.Dto.Usuario;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
 {
-    public class GetGrupoUsuarioQuery : IRequest<GrupoUsuarioDto>
+    public class GetAllGrupoUsuarioQuery : IRequest<List<GrupoUsuarioDto>>
     {
-        public int Id { get; set; }
     }
 }
+
+
+
