@@ -1,6 +1,6 @@
 ﻿using FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma;
-using FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
