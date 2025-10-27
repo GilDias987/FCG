@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJPlataforma
+namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma
 {
     public sealed class EditPlataformaCommandValidator : AbstractValidator<EditPlataformaCommand>
     {
