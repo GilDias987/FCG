@@ -1,12 +1,13 @@
-﻿// Dependências
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+// Dependências
 using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetAllGrupoUsuario;
 using FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
 {

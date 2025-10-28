@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
 
-namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
+namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetAllGrupoUsuario
 {
     public class GetAllGrupoUsuarioQueryHandler : IRequestHandler<GetAllGrupoUsuarioQuery, List<GrupoUsuarioDto>>
     {
