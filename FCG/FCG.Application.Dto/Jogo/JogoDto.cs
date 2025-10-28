@@ -9,5 +9,6 @@
         public decimal? Desconto { get; set; }
         public int GeneroId { get; set; }
         public int PlataformaId { get; set; }
+        public string PrecoDesconto { get; set; }
     }
 }
