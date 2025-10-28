@@ -1,13 +1,14 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-// Dependências
+﻿// Dependências
 using FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo;
-using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
+using FCG.Application.UseCases.Feature.Jogo.Commands.VincularDescontoJogo;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetAllJogo;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
+using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -52,6 +53,19 @@ namespace FCG.WebAPI.Controllers
             var jogo = await _mediator.Send(editJogoCommand);
 
             return CreatedAtAction("AlterarJogo", jogo);
+        }
+
+        /// <summary>
+        /// Vincular Desconto
+        /// </summary>
+        /// <param name="vincularDescontoJogoCommand"></param>
+        /// <returns></returns>
+        [HttpPut("VincularDesconto")]
+        public async Task<IActionResult> VincularDesconto([FromBody] VincularDescontoJogoCommand vincularDescontoJogoCommand)
+        {
+            var jogo = await _mediator.Send(vincularDescontoJogoCommand);
+
+            return Ok(jogo);
         }
 
         /// <summary>

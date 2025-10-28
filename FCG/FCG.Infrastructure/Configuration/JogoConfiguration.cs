@@ -18,7 +18,7 @@ namespace FCG.Infrastructure.Configuration
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").HasColumnName("DTH_CRIACAO").IsRequired();
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME").HasColumnName("DTH_ATUALIZACAO").IsRequired();
             builder.Property(P => P.Preco).HasColumnType("DECIMAL(18,2)").HasColumnName("VLR_PRECO");
-            builder.Property(P => P.Desconto).HasColumnType("DECIMAL(3,2)").HasColumnName("VLR_DESCONTO");
+            builder.Property(P => P.Desconto).HasColumnType("DECIMAL(18,2)").HasColumnName("VLR_DESCONTO");
             builder.Property(p => p.PlataformaId).HasColumnType("INT").HasColumnName("ISN_PLATAFORMA").IsRequired();
             builder.Property(p => p.GeneroId).HasColumnType("INT").HasColumnName("ISN_GENERO").IsRequired();
 

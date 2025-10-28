@@ -90,7 +90,7 @@ namespace FCG.Infrastructure.Migrations
                     DSC_TITULO = table.Column<string>(type: "VARCHAR(500)", nullable: false),
                     DSC_DESCRICAO = table.Column<string>(type: "VARCHAR(2000)", nullable: true),
                     VLR_PRECO = table.Column<decimal>(type: "DECIMAL(18,2)", nullable: true),
-                    VLR_DESCONTO = table.Column<decimal>(type: "DECIMAL(3,2)", nullable: true),
+                    VLR_DESCONTO = table.Column<decimal>(type: "DECIMAL(18,2)", nullable: true),
                     ISN_GENERO = table.Column<int>(type: "INT", nullable: false),
                     ISN_PLATAFORMA = table.Column<int>(type: "INT", nullable: false),
                     DTH_CRIACAO = table.Column<DateTime>(type: "DATETIME", nullable: false),

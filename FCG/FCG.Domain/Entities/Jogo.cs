@@ -30,21 +30,24 @@ namespace FCG.Domain.Entities
         { 
         }
 
-        public Jogo(string titulo, string descricao, decimal preco, decimal desconto, int generoId, int plataformaId)
+        public Jogo(string titulo, string descricao, decimal? preco, decimal? desconto, int generoId, int plataformaId)
         {
             Inicializar(titulo,descricao,preco,desconto,generoId,plataformaId);
         }
 
-        public void Inicializar(string titulo, string descricao, decimal preco, decimal desconto, int generoId, int plataformaId)
+        public void Inicializar(string titulo, string descricao, decimal? preco, decimal? desconto, int generoId, int plataformaId)
         {
             Guard.Against<DomainException>(string.IsNullOrWhiteSpace(titulo), "O titulo do jogo não pode ser vazio.");
             Guard.Against<DomainException>(string.IsNullOrWhiteSpace(descricao), "A descricao do jogo não pode ser vazia.");
             Guard.Against<DomainException>(descricao.Length < 5, "A descricao deve possuir mais que 5 caracteres");
-            Guard.Against<DomainException>(preco < 0, "O preço do jogo não pode ser menor que 0");
             Guard.AgainstEmptyId(generoId, "Genero Id");
             Guard.AgainstEmptyId(plataformaId, "Plataforma Id");
 
-            ValidarDesconto(desconto);
+            if (preco.HasValue)
+                Guard.Against<DomainException>(preco.Value < 0, "O preço do jogo não pode ser menor que 0");
+
+            if (desconto.HasValue)
+                ValidarDesconto(desconto.Value);
 
             Titulo = titulo;
             Descricao = descricao;
@@ -66,10 +69,14 @@ namespace FCG.Domain.Entities
             return Preco ?? 0;
         }
 
-        public void AplicarDesconto(decimal novoDesconto)
+        public void AplicarDesconto(decimal? novoDesconto)
         {
-            ValidarDesconto(novoDesconto);
-            Desconto = novoDesconto;
+            if (novoDesconto.HasValue)
+            {
+                ValidarDesconto(novoDesconto.Value);
+            }
+
+            Desconto = novoDesconto.HasValue ? novoDesconto.Value : null;
         }
     }
 }
