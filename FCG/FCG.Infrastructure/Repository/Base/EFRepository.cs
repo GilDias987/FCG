@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-// Dependências
+﻿// Dependências
 using FCG.ApplicationCore.Interface.Repository.Base;
-using FCG.Infrastructure.Context;
 using FCG.Domain.Entities;
+using FCG.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace FCG.Infrastructure.Repository.Base
 {
@@ -49,6 +49,14 @@ namespace FCG.Infrastructure.Repository.Base
         /// <returns></returns>
         public async Task<bool> GetByIdExistsAsync(int id) => 
             await _dbSet.AnyAsync(a => a.Id == id);
+
+        /// <summary>
+        /// ExistsByAsync
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async Task<bool> ExistsByAsync(Expression<Func<T, bool>> predicate) =>
+            await _dbSet.Where(predicate).AnyAsync();
 
         /// <summary>
         /// Add

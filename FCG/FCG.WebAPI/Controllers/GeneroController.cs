@@ -1,12 +1,13 @@
-﻿// Dependências
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
+// Dependências
 using FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditJGenero;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetAllGenero;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -62,7 +63,7 @@ namespace FCG.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Obter todos gêneros
+        /// Obter todos os gêneros
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos")]
