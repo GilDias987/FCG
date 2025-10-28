@@ -1,11 +1,11 @@
-﻿// Dependências
-using FCG.ApplicationCore.Dto.Jogo;
-using FCG.ApplicationCore.Interface.Repository;
-using FCG.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo
+// Dependências
+using FCG.ApplicationCore.Dto.Jogo;
+using FCG.ApplicationCore.Interface.Repository;
+
+namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetAllJogo
 {
     public class GetAllJogoQueryHandler : IRequestHandler<GetAllJogoQuery, List<JogoDto>>
     {

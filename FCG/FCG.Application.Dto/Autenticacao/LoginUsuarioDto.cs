@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FCG.Application.Dto.Autenticacao
+﻿namespace FCG.Application.Dto.Autenticacao
 {
 
     public class LoginUsuarioDto

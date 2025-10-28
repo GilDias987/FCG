@@ -7,6 +7,7 @@ using FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetAllJogo;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -84,7 +85,7 @@ namespace FCG.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Obter todos jogos
+        /// Obter todos os jogos
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos")]

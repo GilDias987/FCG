@@ -1,10 +1,13 @@
-﻿using FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma;
-using FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma;
-using FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma;
-using FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+// Dependências
+using FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.DeletePlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetAllPlataforma;
+using FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -60,7 +63,7 @@ namespace FCG.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Obter todas plataformas
+        /// Obter todas as plataformas
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos")]

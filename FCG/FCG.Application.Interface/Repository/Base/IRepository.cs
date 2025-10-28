@@ -1,5 +1,6 @@
 ﻿
 using FCG.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace FCG.ApplicationCore.Interface.Repository.Base
 {
@@ -32,6 +33,13 @@ namespace FCG.ApplicationCore.Interface.Repository.Base
         /// <param name="id"></param>
         /// <returns></returns>
         Task<bool> GetByIdExistsAsync(int id);
+
+        /// <summary>
+        /// ExistsByAsync
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<bool> ExistsByAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Add
