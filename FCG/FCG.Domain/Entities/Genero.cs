@@ -1,6 +1,5 @@
 ﻿using FCG.Domain.Common.Exceptions;
 using FCG.Domain.Common.Validations;
-using System.Runtime.ConstrainedExecution;
 
 namespace FCG.Domain.Entities
 {
@@ -21,7 +20,7 @@ namespace FCG.Domain.Entities
 
         public void Inicializar(string titulo)
         {
-            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(titulo), "O titulo do genero não pode ser vazio.");
+            Guard.Against<DomainException>(string.IsNullOrWhiteSpace(titulo), "O título do gênero não pode ser vazio.");
             Titulo = titulo.Trim();
         }
     }

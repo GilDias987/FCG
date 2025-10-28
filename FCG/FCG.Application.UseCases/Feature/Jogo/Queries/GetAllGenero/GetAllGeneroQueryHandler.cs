@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using FCG.ApplicationCore.Dto.Jogo;
 using FCG.ApplicationCore.Interface.Repository;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
+namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetAllGenero
 {
     public class GetAllGeneroQueryHandler : IRequestHandler<GetAllGeneroQuery, List<GeneroDto>>
     {

@@ -1,10 +1,13 @@
-﻿using FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+// Dependências
+using FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetAllUsuario;
+using FCG.Application.UseCases.Feature.Usuario.Queries.GetUsuario;
 
 namespace FCG.WebAPI.Controllers
 {
@@ -80,7 +83,7 @@ namespace FCG.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Obter todos Usuários
+        /// Obter todos os Usuários
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos")]

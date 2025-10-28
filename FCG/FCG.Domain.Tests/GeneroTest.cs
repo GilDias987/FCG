@@ -2,7 +2,6 @@
 using FCG.Domain.Entities;
 using FluentAssertions;
 
-
 namespace FCG.Domain.Tests
 {
     public class GeneroTest
