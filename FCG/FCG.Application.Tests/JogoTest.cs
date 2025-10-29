@@ -575,7 +575,7 @@ namespace FCG.Application.Tests
 
 
         [Fact(DisplayName = "Vincular desconto em jogo com id do jogo inexistente")]
-        public async Task VIncular_Desconto_Jogo_Id_Inexistente()
+        public async Task Vincular_Desconto_Jogo_Id_Inexistente()
         {
             // Arrange
             var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10 };
