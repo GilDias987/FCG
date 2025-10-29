@@ -1,6 +1,7 @@
 ﻿using FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo;
+using FCG.Application.UseCases.Feature.Jogo.Commands.VincularDescontoJogo;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entities;
@@ -571,6 +572,112 @@ namespace FCG.Application.Tests
             // Assert
             Assert.True(deletado);
         }
+
+
+        [Fact(DisplayName = "Vincular desconto em jogo com id do jogo inexistente")]
+        public async Task VIncular_Desconto_Jogo_Id_Inexistente()
+        {
+            // Arrange
+            var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10 };
+            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+
+            // Act
+            _jogoRepositoryMock
+               .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
+               .ReturnsAsync((Jogo)null);
+
+            var result = await validator.ValidateAsync(jogo);
+
+            // Assert
+            Assert.False(result.IsValid);
+            var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
+            Assert.Contains("O id do jogo informado não foi encontrado.", erros);
+        }
+
+        [Fact(DisplayName = "Vincular desconto em jogo com desconto maior que 100%")]
+        public async Task Vincular_Desconto_Jogo_Com_Valor_Desconto_Maior_100()
+        {
+            // Arrange
+            var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 101 };
+            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
+
+            // Act
+            _jogoRepositoryMock
+               .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
+               .ReturnsAsync(objJogo);
+
+            // Assert
+            var result = await validator.ValidateAsync(jogo);
+
+            // Assert
+            Assert.False(result.IsValid);
+            var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
+            Assert.Contains("O percentual do desconto não pode ser negativo ou maior que 100.", erros);
+        }
+
+        [Fact(DisplayName = "Vincular desconto jogo com desconto com casas decimais excedentes")]
+        public async Task Vincular_Desconto_Jogo_Casas_Decimais_Excedente()
+        {
+            // Arrange
+            var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10.333m };
+            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
+
+            // Act
+            _jogoRepositoryMock
+               .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
+               .ReturnsAsync(objJogo);
+
+            // Assert
+            var result = await validator.ValidateAsync(jogo);
+
+            // Assert
+            Assert.False(result.IsValid);
+            var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
+            Assert.Contains("O percentual do desconto não pode conter mais de duas casas decimais.", erros);
+        }
+
+        [Fact(DisplayName = "Vinculo desconto jogo válido")]
+        public async Task Vinculo_Desconto_Jogo_Valido()
+        {
+            // Arrange
+            var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10 };
+            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
+
+            // Act
+            _jogoRepositoryMock
+               .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
+               .ReturnsAsync(objJogo);
+            var result = await validator.ValidateAsync(jogo);
+
+            // Assert
+            Assert.True(result.IsValid);
+        }
+
+        [Fact(DisplayName = "Vincular desconto jogo")]
+        public async Task Vincular_Desconto_Jogo()
+        {
+            // Arrange
+            var command = new VincularDescontoJogoCommand { Id = 1, Desconto = 50, };
+            var handler = new VincularDescontoJogoCommandHandler(_jogoRepositoryMock.Object, _generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
+
+            // Act
+            _jogoRepositoryMock
+                .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
+                .ReturnsAsync(objJogo);
+
+            _jogoRepositoryMock
+                .Setup(repo => repo.UpdateAsync(It.IsAny<Jogo>()));
+
+            var grupoDto = await handler.Handle(command, default);
+
+            // Assert
+            grupoDto.Titulo.Should().Be(objJogo.Titulo);
+        }
+
 
     }
 
