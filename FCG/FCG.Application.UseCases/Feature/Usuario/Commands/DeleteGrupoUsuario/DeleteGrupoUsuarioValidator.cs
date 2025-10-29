@@ -18,7 +18,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario
                  .GreaterThan(0)
                  .WithMessage("O id deve ser maior que zero.")
                  .MustAsync(async (Id, cancellation) => (await _grupoUsuarioRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
-                 .WithMessage("O id informado não foi encontrado.");
+                 .WithMessage("O id grupo de usuario informado não foi encontrado.");
         }
     }
 }

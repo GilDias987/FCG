@@ -20,7 +20,6 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero
             try
             {
                 var objGenero = await _generoRepository.AddAsync(new Domain.Entities.Genero(request.Titulo));
-
                 return new GeneroDto() { Id = objGenero.Id, Titulo = objGenero.Titulo };
             }
             catch (Exception)

@@ -55,7 +55,7 @@ namespace FCG.Domain.Tests
             objJogo.AplicarDesconto(50);
 
             Assert.NotEqual(precoComDesconto, objJogo.CalcularPrecoComDesconto());
-        }
+        } 
 
         [Fact(DisplayName = "Validar se o desconto do jogo é válido")]
         public void Jogo_Aplicar_Desconto_Valido()
