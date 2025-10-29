@@ -3,29 +3,23 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo
 {
-    public sealed class AddJogoCommandValidator : AbstractValidator<AddJogoCommand>
+    public sealed class AddJogoValidator : AbstractValidator<AddJogoCommand>
     {
         private readonly IGeneroRepository _generoRepository;
         private readonly IPlataformaRepository _plataformaRepository;
-        public AddJogoCommandValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository)
+        public AddJogoValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository)
         {
             _generoRepository = generoRepository;
             _plataformaRepository = plataformaRepository;
 
             RuleFor(c => c.Titulo).NotEmpty().WithMessage("Informe o título.");
 
-            RuleFor(c => c.Preco).NotEmpty()
-                .WithMessage("Informe o preço.")
+            RuleFor(c => c.Preco)
                 .Must((model, context) =>
                 {
-                   if (model.Desconto.HasValue)
-                   {
-                       return !(model.Desconto.Value != Math.Round(model.Desconto.Value, 2));
-                   }
-
-                   return true;
+                   return !(model.Preco != Math.Round(model.Preco, 2));
                 })
-                .WithMessage("O preço não pode conter mais de duas casas decimais");
+                .WithMessage("O preço não pode conter mais de duas casas decimais.");
 
             RuleFor(x => x.GeneroId)
               .MustAsync(async (GeneroId, cancellation) => (await _generoRepository.GetByIdAsync(GeneroId)) != null ? true : false) // Chame seu método aqui
@@ -56,7 +50,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo
 
                        return true;
                    })
-                .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais");
+                .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais.");
         }
     }
 }

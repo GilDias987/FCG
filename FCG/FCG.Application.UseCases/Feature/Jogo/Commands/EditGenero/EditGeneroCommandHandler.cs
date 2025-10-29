@@ -4,7 +4,7 @@
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.ApplicationCore.Dto.Jogo;
 
-namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJGenero
+namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
 {
     public class EditGeneroCommandHandler : IRequestHandler<EditGeneroCommand, GeneroDto>
     {

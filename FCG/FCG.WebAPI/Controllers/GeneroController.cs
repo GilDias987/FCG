@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 // Dependências
 using FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero;
-using FCG.Application.UseCases.Feature.Jogo.Commands.EditJGenero;
+using FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetAllGenero;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero;
 

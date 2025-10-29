@@ -1,7 +1,8 @@
-﻿using FluentValidation;
-
-// Dependências
+﻿// Dependências
 using FCG.ApplicationCore.Interface.Repository;
+using FCG.Domain.Common.Exceptions;
+using FluentValidation;
+using System;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario
 {
@@ -13,10 +14,6 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario
             _grupoUsuarioRepository = grupoUsuarioRepository;
 
             RuleFor(x => x.Id)
-              .NotEmpty()
-              .WithMessage("Informe o id do grupo de usuario.")
-              .GreaterThan(0)
-              .WithMessage("O id deve ser maior que zero.")
               .MustAsync(async (Id, cancellation) => (await _grupoUsuarioRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
               .WithMessage("O id informado não foi encontrado.");
 

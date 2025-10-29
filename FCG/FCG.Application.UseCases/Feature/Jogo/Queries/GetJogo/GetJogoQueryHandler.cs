@@ -24,20 +24,16 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetJogo
         /// <exception cref="ArgumentException"></exception>
         public async Task<JogoDto> Handle(GetJogoQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var jogo = await _jogoRepository.GetJogoIdAsync(request.Id);
-                if (jogo is null)
-                {
-                    throw new ArgumentException("Jogo não encontrado.");
-                }
 
-                return new JogoDto { Id = jogo.Id, Titulo = jogo.Titulo, Descricao = jogo.Descricao, Preco = jogo.Preco, Desconto = jogo.Desconto };
-            }
-            catch (Exception)
+            var jogo = await _jogoRepository.GetByIdAsync(request.Id);
+           
+            if (jogo is null)
             {
-                throw new Exception("Ocorreu uma falha inesperada. Tente novamente mais tarde.");
+                throw new ArgumentException("Jogo não encontrado.");
             }
+
+            return new JogoDto { Id = jogo.Id, Titulo = jogo.Titulo, Descricao = jogo.Descricao, Preco = jogo.Preco, Desconto = jogo.Desconto, PlataformaId = jogo.PlataformaId, GeneroId = jogo.GeneroId };
+
         }
     }
 }
