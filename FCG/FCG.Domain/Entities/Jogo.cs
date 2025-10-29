@@ -1,6 +1,5 @@
 ﻿using FCG.Domain.Common.Exceptions;
 using FCG.Domain.Common.Validations;
-using FCG.Domain.ValueObjects;
 
 namespace FCG.Domain.Entities
 {

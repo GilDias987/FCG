@@ -22,7 +22,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.VincularDescontoJogo
               .GreaterThan(0)
               .WithMessage("O id deve ser maior que zero.")
               .MustAsync(async (Id, cancellation) => (await _jogoRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
-              .WithMessage("O id informado não foi encontrado.");
+              .WithMessage("O id do jogo informado não foi encontrado.");
           
             RuleFor(x => x.Desconto)
                       .Must((model, context) =>
@@ -45,7 +45,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.VincularDescontoJogo
 
                              return true;
                          })
-                      .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais");
+                      .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais.");
         }
     }
 }

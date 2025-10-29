@@ -3,7 +3,6 @@
 // Dependências
 using FCG.ApplicationCore.Dto.Usuario;
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Dto.Jogo;
 using FCG.Domain.ValueObjects;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario
@@ -28,7 +27,7 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario
                 if (usuExiste is true)
                     throw new ArgumentException("Este e-mail já está registrado. Por favor, tente outro.");
 
-                var gruExiste   = await _UsuarioGrupoRepository.GetByIdExistsAsync(request.UsuarioGrupoId);
+                var gruExiste = await _UsuarioGrupoRepository.GetByIdExistsAsync(request.UsuarioGrupoId);
                 if (gruExiste is false)
                     throw new ArgumentException("O Grupo de usuário não foi encontrado.");
 

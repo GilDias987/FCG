@@ -21,6 +21,13 @@ namespace FCG.ApplicationCore.Interface.Repository.Base
         Task<T> GetByIdAsync(int id);
 
         /// <summary>
+        /// GetByOrDefaultIdAsync
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<T?> GetByOrDefaultIdAsync(int id);
+
+        /// <summary>
         /// GetByIdExists
         /// </summary>
         /// <param name="id"></param>

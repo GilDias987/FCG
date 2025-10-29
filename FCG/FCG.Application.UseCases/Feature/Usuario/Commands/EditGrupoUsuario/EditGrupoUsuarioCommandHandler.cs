@@ -1,7 +1,8 @@
-﻿using FCG.ApplicationCore.Dto.Usuario;
+﻿using MediatR;
+
 // Dependências
 using FCG.ApplicationCore.Interface.Repository;
-using MediatR;
+using FCG.ApplicationCore.Dto.Usuario;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario
 {
