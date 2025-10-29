@@ -11,5 +11,7 @@ namespace FCG.ApplicationCore.Interface.Repository
         /// <param name="id"></param>
         /// <returns></returns>
         Task<Genero?> GetGeneroIdAsync(int id);
+
+        Task<bool> VerificarSeExisteGeneroAsync(string titulo);
     }
 }

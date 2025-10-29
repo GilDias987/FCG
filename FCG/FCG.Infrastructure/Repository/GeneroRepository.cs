@@ -22,5 +22,11 @@ namespace FCG.Infrastructure.Repository
         {
             return await _dbSet.FirstOrDefaultAsync(g => g.Id == id);
         }
+
+        public async Task<bool> VerificarSeExisteGeneroAsync(string titulo)
+        {
+            var grupo = await _dbSet.FirstOrDefaultAsync(g => g.Titulo.ToLower() == titulo.ToLower());
+            return grupo != null ? true : false;
+        }
     }
 }

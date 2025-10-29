@@ -35,6 +35,8 @@ namespace FCG.Domain.Entities
 
             Nome = nome.Trim();
             GrupoUsuarioId = grupoUsuarioId;
+            Email = email;
+            Senha = senha;
 
         }
 

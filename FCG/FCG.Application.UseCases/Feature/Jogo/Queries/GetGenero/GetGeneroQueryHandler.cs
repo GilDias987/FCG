@@ -24,21 +24,15 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
         /// <exception cref="ArgumentException"></exception>
         public async Task<GeneroDto> Handle(GetGeneroQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var genero  = await _generoRepository.GetByIdAsync(request.Id);
-                if (genero is null)
-                {
-                    throw new ArgumentException("Gênero não encontrado.");
-                }
 
-                // Dto
-                return new GeneroDto { Id = genero.Id, Titulo = genero.Titulo};
-            }
-            catch (Exception)
+            var genero = await _generoRepository.GetByIdAsync(request.Id);
+            
+            if (genero is null)
             {
-                throw new Exception("Ocorreu uma falha inesperada. Tente novamente mais tarde.");
+                throw new ArgumentException("Gênero não encontrado.");
             }
+
+            return new GeneroDto { Id = genero.Id, Titulo = genero.Titulo };
         }
     }
 }
