@@ -25,17 +25,17 @@ namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetAllUsuario
         /// <exception cref="ArgumentException"></exception>
         public async Task<List<UsuarioDto>> Handle(GetAllUsuarioQuery request, CancellationToken cancellationToken)
         {
-            var usuario = await _usuarioRepository.All.Select(s => new UsuarioDto
+            var usuarios = (await _usuarioRepository.GetAllUsuarios()).Select(s => new UsuarioDto
             {
-                Id = s.Id, Nome = s.Nome, Email = s.Email.Endereco, GrupoUsuarioId = s.GrupoUsuarioId
-            }).ToListAsync();
+                Id = s.Id, Nome = s.Nome, Email = s.Email.Endereco, GrupoUsuarioId = s.GrupoUsuarioId, Grupo = s.GrupoUsuario.Nome
+            });
 
-            if (!usuario.Any())
+            if (!usuarios.Any())
             {
                 throw new ArgumentException("Nenhum registro encontrado.");
             }
 
-            return usuario;
+            return usuarios.ToList();
         }
     }
 }

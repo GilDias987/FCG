@@ -22,6 +22,8 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma
             {
                 try
                 {
+                    plataforma.Inicializar(request.Titulo);
+
                     await _plataformaRepository.UpdateAsync(plataforma);
 
                     return new PlataformaDto() { Id = plataforma.Id, Titulo = plataforma.Titulo};

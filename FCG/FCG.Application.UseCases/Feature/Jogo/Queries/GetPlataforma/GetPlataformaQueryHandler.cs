@@ -24,21 +24,13 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetPlataforma
         /// <exception cref="ArgumentException"></exception>
         public async Task<PlataformaDto> Handle(GetPlataformaQuery request, CancellationToken cancellationToken)
         {
-            try
+            var plataforma = await _plataformaRepository.GetByIdAsync(request.Id);
+            if (plataforma is null)
             {
-                var plataforma = await _plataformaRepository.GetByIdAsync(request.Id);
-                if (plataforma is null)
-                {
-                    throw new ArgumentException("Plataforma não encontrada.");
-                }
+                throw new ArgumentException("Plataforma não encontrada.");
+            }
 
-                // Dto
-                return new PlataformaDto { Id = plataforma.Id, Titulo = plataforma.Titulo};
-            }
-            catch (Exception)
-            {
-                throw new Exception("Ocorreu uma falha inesperada. Tente novamente mais tarde.");
-            }
+            return new PlataformaDto { Id = plataforma.Id, Titulo = plataforma.Titulo };
         }
     }
 }

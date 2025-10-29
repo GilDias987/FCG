@@ -3,17 +3,12 @@ using FCG.Application.UseCases.Feature.Jogo.Commands.AddGenero;
 using FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero;
 using FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero;
 using FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero;
-using FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario;
-using FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario;
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entities;
 using FluentAssertions;
-using FluentValidation;
 using MediatR;
 using Moq;
 using System.Linq.Expressions;
-using System.Xml;
 
 namespace FCG.Application.Tests
 {
@@ -63,7 +58,7 @@ namespace FCG.Application.Tests
             Assert.Equal(result, hGenero != null);
         }
 
-        [Fact(DisplayName = "Adicionar gênero de jogo não válido com título existente")]
+        [Fact(DisplayName = "Adicionar gênero de jogo não válido com título existente.")]
         public async Task AddGeneroComTituloExistente()
         {
             // Arrange
@@ -85,8 +80,8 @@ namespace FCG.Application.Tests
 
         }
 
-        [Fact(DisplayName = "Adicionar Grupo de Usuário não válido sem nome")]
-        public async Task Add_Grupo_Usuario_Sem_Nome_Grupo()
+        [Fact(DisplayName = "Adicionar gênero de jogo não válido sem título.")]
+        public async Task AddGeneroSemTitulo()
         {
             // Arrange
             var grupoUsuaro = new AddGeneroCommand { Titulo = "" };
@@ -104,8 +99,8 @@ namespace FCG.Application.Tests
             Assert.Contains("Informe o titulo do genero.", erros);
         }
 
-        [Fact(DisplayName = "Adicionar Grupo de Usuário válido")]
-        public async Task Add_Grupo_Usuario_Valido()
+        [Fact(DisplayName = "Adicionar gênero de jogo válido.")]
+        public async Task AddGeneroValido()
         {
             // Arrange
             var command = new AddGeneroCommand { Titulo = "Ação" };
@@ -121,8 +116,8 @@ namespace FCG.Application.Tests
             Assert.True(result.IsValid);
         }
 
-        [Fact(DisplayName = "Adicionar Genero")]
-        public async Task Add_Genero()
+        [Fact(DisplayName = "Adicionar gênero de jogo.")]
+        public async Task AddGenero()
         {
             // Arrange
             var command = new AddGeneroCommand { Titulo = "Ação" };
@@ -140,15 +135,14 @@ namespace FCG.Application.Tests
             generoDto.Titulo.Should().Be(genero.Titulo);
         }
 
-        [Fact(DisplayName = "Editar Genero não válido sem titulo")]
-        public async Task Edit_Genero_Sem_Titulo()
+        [Fact(DisplayName = "Editar gênero de jogo não válido sem titulo.")]
+        public async Task EditGeneroSemTitulo()
         {
             // Arrange
-            var command = new EditGeneroCommand { Titulo = "" };
+            var command   = new EditGeneroCommand { Titulo = "" };
             var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
 
             // Act
-
             _generoRepositoryMock
               .Setup(repo => repo.GetByIdAsync(It.IsAny<int>()))
               .ReturnsAsync(new Genero("Ação"));
@@ -161,14 +155,14 @@ namespace FCG.Application.Tests
             // Assert
             Assert.False(result.IsValid);
             var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
-            Assert.Contains("Informe o titulo do genero.", erros);
+            Assert.Contains("Informe o titulo do gênero.", erros);
         }
 
-        [Fact(DisplayName = "Editar Genero não válido com nome existente")]
-        public async Task Edit_Genero_Com_Nome_Existente()
+        [Fact(DisplayName = "Editar gênero de jogo não válido com título existente.")]
+        public async Task EditGeneroComNomeExistente()
         {
             // Arrange
-            var command = new EditGeneroCommand { Titulo = "Ação Teste" };
+            var command   = new EditGeneroCommand { Titulo = "" };
             var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
 
             // Act 
@@ -184,11 +178,11 @@ namespace FCG.Application.Tests
             // Assert
             Assert.False(result.IsValid);
             var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
-            Assert.Contains("Já existe um genero com esse título.", erros);
+            Assert.Contains("Já existe um gênero com esse título.", erros);
         }
 
-        [Fact(DisplayName = "Editar Genero Válido")]
-        public async Task Edit_Genero_Valido()
+        [Fact(DisplayName = "Editar gênero de jogo válido.")]
+        public async Task EditGeneroValido()
         {
             // Arrange
             var command = new EditGeneroCommand { Titulo = "Ação" };
@@ -209,8 +203,8 @@ namespace FCG.Application.Tests
             Assert.True(result.IsValid);
         }
 
-        [Fact(DisplayName = "Editar Genero")]
-        public async Task Edit_Genero()
+        [Fact(DisplayName = "Editar gênero de jogo.")]
+        public async Task EditGenero()
         {
             // Arrange
             var command = new EditGeneroCommand { Titulo = "Ação" };
@@ -231,8 +225,8 @@ namespace FCG.Application.Tests
             generoDto.Titulo.Should().Be(genero.Titulo);
         }
 
-        [Fact(DisplayName = "Deletar Genero inexistente")]
-        public async Task Delete_Genero_Inexistente()
+        [Fact(DisplayName = "Deletar gênero de jogo inexistente.")]
+        public async Task DeleteGeneroInexistente()
         {
             // Arrange
             var grupoUsuaro = new DeleteGeneroCommand { Id = 1 };
@@ -253,8 +247,8 @@ namespace FCG.Application.Tests
             Assert.Contains("O id do genero informado não foi encontrado.", erros);
         }
 
-        [Fact(DisplayName = "Deletar Genero existente")]
-        public async Task Delete_Genero_Existente()
+        [Fact(DisplayName = "Deletar gênero de jogo existente.")]
+        public async Task DeleteGeneroExistente()
         {
             // Arrange
             var command = new DeleteGeneroCommand { Id = 1 };
@@ -273,8 +267,8 @@ namespace FCG.Application.Tests
             Assert.True(result.IsValid);
         }
 
-        [Fact(DisplayName = "Deletar Genero")]
-        public async Task Delete_Genero()
+        [Fact(DisplayName = "Deletar gênero de jogo.")]
+        public async Task DeleteGenero()
         {
             // Arrange
             var command = new DeleteGeneroCommand { Id = 1 };
@@ -294,6 +288,5 @@ namespace FCG.Application.Tests
             // Assert
             Assert.True(deletado);
         }
-
     }
 }
