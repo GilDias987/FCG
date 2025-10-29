@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-// Dependências
+﻿// Dependências
 using FCG.ApplicationCore.Interface.Repository;
 using FCG.Domain.Entities;
 using FCG.Infrastructure.Context;
 using FCG.Infrastructure.Repository.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace FCG.Infrastructure.Repository
 {
@@ -35,6 +34,15 @@ namespace FCG.Infrastructure.Repository
         public async Task<Usuario?> GetUsuarioAsync(int id)
         {
             return await _dbSet.Include(x => x.GrupoUsuario).FirstOrDefaultAsync(g => g.Id == id);
+        }
+
+        /// <summary>
+        /// GetAllUsuarios
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Usuario>> GetAllUsuarios()
+        {
+            return await _dbSet.Include(x => x.GrupoUsuario).ToListAsync();
         }
     }
 }

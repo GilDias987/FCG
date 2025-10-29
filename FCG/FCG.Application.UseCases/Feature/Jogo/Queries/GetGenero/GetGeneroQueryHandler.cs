@@ -24,9 +24,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Queries.GetGenero
         /// <exception cref="ArgumentException"></exception>
         public async Task<GeneroDto> Handle(GetGeneroQuery request, CancellationToken cancellationToken)
         {
-
             var genero = await _generoRepository.GetByIdAsync(request.Id);
-            
             if (genero is null)
             {
                 throw new ArgumentException("Gênero não encontrado.");
