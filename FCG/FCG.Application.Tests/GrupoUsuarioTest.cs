@@ -248,7 +248,7 @@ namespace FCG.Application.Tests
             // Assert
             Assert.False(result.IsValid);
             var erros = result.Errors.Select(e => e.ErrorMessage).ToList();
-            Assert.Contains("O id informado não foi encontrado.", erros);
+            Assert.Contains("O id grupo de usuario informado não foi encontrado.", erros);
         }
 
         [Fact(DisplayName = "Deletar Grupo de Usuário existente")]

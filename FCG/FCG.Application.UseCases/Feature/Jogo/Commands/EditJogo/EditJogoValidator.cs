@@ -3,30 +3,36 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo
 {
-    public sealed class EditJogoCommandValidator : AbstractValidator<EditJogoCommand>
+    public sealed class EditJogoValidator : AbstractValidator<EditJogoCommand>
     {
         private readonly IGeneroRepository _generoRepository;
         private readonly IPlataformaRepository _plataformaRepository;
         private readonly IJogoRepository _jogoRepository;
-        public EditJogoCommandValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository, IJogoRepository jogoRepository)
+        public EditJogoValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository, IJogoRepository jogoRepository)
         {
             _generoRepository = generoRepository;
             _plataformaRepository = plataformaRepository;
             _jogoRepository = jogoRepository;
 
             RuleFor(x => x.Id)
-              .MustAsync(async (Id, cancellation) => (await _jogoRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
+              .MustAsync(async (Id, cancellation) => (await _jogoRepository.GetByIdAsync(Id)) != null ? true : false) 
               .WithMessage("O id do jogo informado não foi encontrado.");
 
             RuleFor(c => c.Titulo).NotEmpty().WithMessage("Informe o título.");
-            RuleFor(c => c.Preco).NotEmpty().WithMessage("Informe o preço.");
+
+            RuleFor(c => c.Preco)
+               .Must((model, context) =>
+               {
+                   return !(model.Preco != Math.Round(model.Preco, 2));
+               })
+               .WithMessage("O preço não pode conter mais de duas casas decimais.");
 
             RuleFor(x => x.GeneroId)
-               .MustAsync(async (GeneroId, cancellation) => (await _generoRepository.GetByIdAsync(GeneroId)) != null ? true : false) // Chame seu método aqui
+               .MustAsync(async (GeneroId, cancellation) => (await _generoRepository.GetByIdAsync(GeneroId)) != null ? true : false) 
                .WithMessage("O id do genero do jogo não foi encontrado.");
 
             RuleFor(x => x.PlataformaId)
-               .MustAsync(async (PlataformaId, cancellation) => (await _plataformaRepository.GetByIdAsync(PlataformaId)) != null ? true : false) // Chame seu método aqui
+               .MustAsync(async (PlataformaId, cancellation) => (await _plataformaRepository.GetByIdAsync(PlataformaId)) != null ? true : false) 
                .WithMessage("O id do plataforma do jogo não foi encontrado.");
 
             RuleFor(x => x.Desconto)
@@ -50,7 +56,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditJogo
 
                           return true;
                       })
-                   .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais");
+                   .WithMessage("O percentual do desconto não pode conter mais de duas casas decimais.");
         }
     }
 }
