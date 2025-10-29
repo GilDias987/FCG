@@ -10,19 +10,18 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
         {
             _generoRepository = generoRepository;
 
-            RuleFor(c => c.Titulo).NotEmpty().WithMessage("Informe o titulo do genero.");
+            RuleFor(c => c.Titulo).NotEmpty().WithMessage("Informe o titulo do gênero.");
 
             RuleFor(x => x.Id)
             .MustAsync(async (Id, cancellation) => (await generoRepository.GetByIdAsync(Id)) != null ? true : false) // Chame seu método aqui
-            .WithMessage("O id do genero não foi encontrado.");
+            .WithMessage("O id do gênero não foi encontrado.");
 
             RuleFor(x => x.Titulo)
               .NotEmpty()
-              .WithMessage("Informe o titulo do genero.")
+              .WithMessage("Informe o titulo do gênero.")
               .MustAsync(async (model, context, cancellationToken) =>
               {
-                   var genero = await _generoRepository.GetByIdAsync(model.Id);
-
+                  var genero  = await _generoRepository.GetByIdAsync(model.Id);
                   if (genero != null && genero.Titulo != model.Titulo)
                   {
                       var verificaGenero = await _generoRepository.ExistsByAsync(x => x.Titulo == model.Titulo);
@@ -31,7 +30,7 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
 
                   return true;
               })
-              .WithMessage("Já existe um genero com esse título.");
+              .WithMessage("Já existe um gênero com esse título.");
 
         }
     }

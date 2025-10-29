@@ -35,6 +35,14 @@ namespace FCG.Infrastructure.Repository.Base
             await _dbSet.FindAsync(id);
 
         /// <summary>
+        /// FirstOrDefaultAsync
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<T?> GetByOrDefaultIdAsync(int id) =>
+            await _dbSet.FirstOrDefaultAsync(a => a.Id == id);
+
+        /// <summary>
         /// GetByIdExists
         /// </summary>
         /// <param name="id"></param>

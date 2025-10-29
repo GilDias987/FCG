@@ -1,8 +1,8 @@
-﻿using MediatR;
-
+﻿using FCG.ApplicationCore.Dto.Jogo;
 // Dependências
 using FCG.ApplicationCore.Interface.Repository;
-using FCG.ApplicationCore.Dto.Jogo;
+using FCG.Domain.Entities;
+using MediatR;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
 {
@@ -22,6 +22,8 @@ namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
             {
                 try
                 {
+                    objGenero.Inicializar(request.Titulo);
+
                     await _generoRepository.UpdateAsync(objGenero);
 
                     return new GeneroDto() { Id = objGenero.Id, Titulo = objGenero.Titulo};

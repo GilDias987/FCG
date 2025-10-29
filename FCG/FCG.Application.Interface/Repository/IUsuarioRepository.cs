@@ -11,5 +11,11 @@ namespace FCG.ApplicationCore.Interface.Repository
         Task<Usuario?> GetUsuarioAsync(int id);
 
         Task<bool> GetByEmailExistsAsync(int usuarioId, string email);
+
+        /// <summary>
+        /// GetAllUsuarios
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Usuario>> GetAllUsuarios();
     }
 }

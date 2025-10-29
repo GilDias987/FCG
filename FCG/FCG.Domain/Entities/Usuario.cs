@@ -37,7 +37,6 @@ namespace FCG.Domain.Entities
             GrupoUsuarioId = grupoUsuarioId;
             Email = email;
             Senha = senha;
-
         }
 
         public bool ValidarSenha(string senha)
