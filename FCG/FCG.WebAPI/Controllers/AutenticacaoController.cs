@@ -20,7 +20,7 @@ namespace FCG.WebAPI.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginUsuarioRequest loginUsuarioRequest)
+        public async Task<IActionResult> Login([FromBody] LoginUsuarioCommand loginUsuarioRequest)
         {
             try
             {

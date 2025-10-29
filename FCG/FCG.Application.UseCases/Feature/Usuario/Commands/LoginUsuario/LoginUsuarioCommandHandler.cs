@@ -4,16 +4,16 @@ using MediatR;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
 {
-    public class LoginUsuarioRequestHandler : IRequestHandler<LoginUsuarioRequest, UsuarioDto>
+    public class LoginUsuarioCommandHandler : IRequestHandler<LoginUsuarioCommand, UsuarioDto>
     {
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public LoginUsuarioRequestHandler(IUsuarioRepository usuarioRepository)
+        public LoginUsuarioCommandHandler(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<UsuarioDto> Handle(LoginUsuarioRequest request, CancellationToken cancellationToken)
+        public async Task<UsuarioDto> Handle(LoginUsuarioCommand request, CancellationToken cancellationToken)
         {
             var argumentException = new ArgumentException("E-mail ou senha inválidos.");
 
