@@ -63,7 +63,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new AddPlataformaCommand { Titulo = "Playstation 5" };
-            var validator  = new AddPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new AddPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock.Setup(r => r.ExistsByAsync(It.IsAny<Expression<Func<Plataforma, bool>>>()))
@@ -83,7 +83,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new AddPlataformaCommand { Titulo = "" };
-            var validator  = new AddPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new AddPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock.Setup(r => r.ExistsByAsync(It.IsAny<Expression<Func<Plataforma, bool>>>()))
@@ -102,7 +102,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new AddPlataformaCommand { Titulo = "Playstation 5" };
-            var validator  = new AddPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new AddPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock.Setup(r => r.ExistsByAsync(It.IsAny<Expression<Func<Plataforma, bool>>>()))
@@ -138,7 +138,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new EditPlataformaCommand { Titulo = "" };
-            var validator  = new EditPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new EditPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock
@@ -160,7 +160,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new EditPlataformaCommand { Titulo = "" };
-            var validator  = new EditPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new EditPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act 
             _plataformaRepositoryMock
@@ -183,7 +183,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new EditPlataformaCommand { Titulo = "Playstation 5" };
-            var validator  = new EditPlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new EditPlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock
@@ -226,7 +226,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var plataforma = new DeletePlataformaCommand { Id = 1 };
-            var validator  = new DeletePlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new DeletePlataformaValidator(_plataformaRepositoryMock.Object);
 
             // Act
             _plataformaRepositoryMock
@@ -246,7 +246,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command    = new DeletePlataformaCommand { Id = 1 };
-            var validator  = new DeletePlataformaCommandValidator(_plataformaRepositoryMock.Object);
+            var validator  = new DeletePlataformaValidator(_plataformaRepositoryMock.Object);
             var plataforma = new Plataforma("Playstation 5");
 
             // Act

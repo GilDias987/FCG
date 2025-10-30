@@ -18,28 +18,21 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditUsuario
             _UsuarioGrupoRepository = usuarioGrupoRepository;
         }
 
-        public async Task<UsuarioDto>Handle(EditUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<UsuarioDto> Handle(EditUsuarioCommand request, CancellationToken cancellationToken)
         {
-            var objUsuario  = await _usuarioRepository.GetByIdAsync(request.Id);
-            if (objUsuario != null)
+
+
+            try
             {
-                var usuExiste = await _usuarioRepository.GetByEmailExistsAsync(request.Id, request.Email);
-                if (usuExiste is true)
-                    throw new ArgumentException("Este e-mail já está registrado. Por favor, tente outro.");
-
-                var gruExiste = await _UsuarioGrupoRepository.GetByIdExistsAsync(request.UsuarioGrupoId);
-                if (gruExiste is false)
-                    throw new ArgumentException("O Grupo de usuário não foi encontrado.");
-
+                var objUsuario = await _usuarioRepository.GetByIdAsync(request.Id);
                 objUsuario.Inicializar(request.Nome, new Email(request.Email), new Senha(request.Senha), request.UsuarioGrupoId);
-
                 await _usuarioRepository.UpdateAsync(objUsuario);
 
                 return new UsuarioDto() { Id = objUsuario.Id, Nome = objUsuario.Nome, Email = objUsuario.Email.Endereco, GrupoUsuarioId = objUsuario.GrupoUsuarioId };
             }
-            else
+            catch (Exception)
             {
-                throw new ArgumentException("Usuário não foi encontrado.");
+                throw new Exception("Ao Editar o usuário ocorreu uma falha inesperada. Tente novamente mais tarde.");
             }
         }
     }

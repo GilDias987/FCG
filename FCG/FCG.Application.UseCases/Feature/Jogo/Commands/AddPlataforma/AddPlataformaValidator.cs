@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddPlataforma
 {
-    public sealed class AddPlataformaCommandValidator : AbstractValidator<AddPlataformaCommand>
+    public sealed class AddPlataformaValidator : AbstractValidator<AddPlataformaCommand>
     {
         private readonly IPlataformaRepository _plataformaRepository;
 
-        public AddPlataformaCommandValidator(IPlataformaRepository plataformaRepository)
+        public AddPlataformaValidator(IPlataformaRepository plataformaRepository)
         {
             _plataformaRepository = plataformaRepository;
 

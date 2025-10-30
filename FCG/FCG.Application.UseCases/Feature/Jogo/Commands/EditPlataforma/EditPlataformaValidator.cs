@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditPlataforma
 {
-    public sealed class EditPlataformaCommandValidator : AbstractValidator<EditPlataformaCommand>
+    public sealed class EditPlataformaValidator : AbstractValidator<EditPlataformaCommand>
     {
         private readonly IPlataformaRepository _plataformaRepository;
 
-        public EditPlataformaCommandValidator(IPlataformaRepository plataformaRepository)
+        public EditPlataformaValidator(IPlataformaRepository plataformaRepository)
         {
             _plataformaRepository = plataformaRepository;
 
