@@ -140,7 +140,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command   = new EditGeneroCommand { Titulo = "" };
-            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -163,7 +163,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command   = new EditGeneroCommand { Titulo = "" };
-            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
 
             // Act 
             _generoRepositoryMock
@@ -186,7 +186,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new EditGeneroCommand { Titulo = "Ação" };
-            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
 
             // Act
 
@@ -230,7 +230,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new DeleteGeneroCommand { Id = 1 };
-            var validator = new DeleteGeneroCommandValidator(_generoRepositoryMock.Object);
+            var validator = new DeleteGeneroValidator(_generoRepositoryMock.Object);
 
             // Act
 
@@ -252,7 +252,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new DeleteGeneroCommand { Id = 1 };
-            var validator = new DeleteGeneroCommandValidator(_generoRepositoryMock.Object);
+            var validator = new DeleteGeneroValidator(_generoRepositoryMock.Object);
             var genero = new Genero("Ação");
 
             // Act

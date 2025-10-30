@@ -28,15 +28,6 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario
         /// <exception cref="Exception"></exception>
         public async Task<UsuarioDto>Handle(AddUsuarioCommand request, CancellationToken cancellationToken)
         {
-            // Usando FluentValidation
-            var repUsuario  = await _usuarioRepository.UsuarioEmailAsync(request.Email);
-            if (repUsuario != null)
-                throw new ArgumentException("Este e-mail já está registrado. Por favor, tente outro.");
-
-            var repUsuarioGrupo = await _UsuarioGrupoRepository.GetByIdExistsAsync(request.UsuarioGrupoId);
-            if (repUsuarioGrupo is false)
-                throw new ArgumentException("O Grupo de usuário não foi encontrado.");
-
             try
             {
                 var objUsuario = await _usuarioRepository.AddAsync(new Domain.Entities.Usuario(request.Nome, new Email( request.Email),new Senha(request.Senha), request.UsuarioGrupoId));

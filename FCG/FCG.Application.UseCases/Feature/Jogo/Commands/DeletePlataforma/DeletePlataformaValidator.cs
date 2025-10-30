@@ -4,11 +4,11 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero
 {
-    public sealed class DeletePlataformaCommandValidator : AbstractValidator<DeletePlataformaCommand>
+    public sealed class DeletePlataformaValidator : AbstractValidator<DeletePlataformaCommand>
     {
         private readonly IPlataformaRepository _plataformaRepository;
 
-        public DeletePlataformaCommandValidator(IPlataformaRepository plataformaRepository)
+        public DeletePlataformaValidator(IPlataformaRepository plataformaRepository)
         {
             _plataformaRepository = plataformaRepository;
 
