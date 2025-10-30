@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.VincularDescontoJogo
 {
-    public class VincularDescontoJogoCommandValidator : AbstractValidator<VincularDescontoJogoCommand>
+    public class VincularDescontoJogoValidator : AbstractValidator<VincularDescontoJogoCommand>
     {
         private readonly IJogoRepository _jogoRepository;
-        public VincularDescontoJogoCommandValidator(IJogoRepository jogoRepository)
+        public VincularDescontoJogoValidator(IJogoRepository jogoRepository)
         {
             _jogoRepository = jogoRepository;
 

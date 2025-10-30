@@ -3,10 +3,10 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.EditGenero
 {
-    public sealed class EditGeneroCommandValidator : AbstractValidator<EditGeneroCommand>
+    public sealed class EditGeneroValidator : AbstractValidator<EditGeneroCommand>
     {
         private readonly IGeneroRepository _generoRepository;
-        public EditGeneroCommandValidator(IGeneroRepository generoRepository)
+        public EditGeneroValidator(IGeneroRepository generoRepository)
         {
             _generoRepository = generoRepository;
 
