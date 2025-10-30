@@ -62,7 +62,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new AddGrupoUsuarioCommand { Nome = "ADMINISTRADOR" };
-            var validator = new AddGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new AddGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
             _grupoUsuarioRepositoryMock
@@ -82,7 +82,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new AddGrupoUsuarioCommand { Nome = "" };
-            var validator = new AddGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new AddGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
             _grupoUsuarioRepositoryMock
@@ -102,7 +102,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new AddGrupoUsuarioCommand { Nome = "ADMINISTRADOR" };
-            var validator = new AddGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new AddGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
             _grupoUsuarioRepositoryMock
@@ -139,7 +139,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new EditGrupoUsuarioCommand { Id = 1, Nome = "" };
-            var validator = new EditGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new EditGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
 
@@ -164,7 +164,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new EditGrupoUsuarioCommand { Id = 1, Nome = "MASTER" };
-            var validator = new EditGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new EditGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act 
 
@@ -189,7 +189,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new EditGrupoUsuarioCommand { Id = 1, Nome = "ADMINISTRADOR" };
-            var validator = new EditGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new EditGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
 
@@ -234,7 +234,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new DeleteGrupoUsuarioCommand { Id = 1};
-            var validator = new DeleteGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new DeleteGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
 
             // Act
 
@@ -256,7 +256,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new DeleteGrupoUsuarioCommand { Id = 1 };
-            var validator = new DeleteGrupoUsuarioCommandValidator(_grupoUsuarioRepositoryMock.Object);
+            var validator = new DeleteGrupoUsuarioValidator(_grupoUsuarioRepositoryMock.Object);
             var grupo = new GrupoUsuario("ADMINISTRADOR");
             // Act
 
