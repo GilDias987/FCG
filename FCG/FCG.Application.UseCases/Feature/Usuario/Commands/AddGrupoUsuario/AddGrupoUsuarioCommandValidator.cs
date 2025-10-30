@@ -5,10 +5,10 @@ using FCG.ApplicationCore.Interface.Repository;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddGrupoUsuario
 {
-    public sealed class AddGrupoUsuarioValidator : AbstractValidator<AddGrupoUsuarioCommand>
+    public sealed class AddGrupoUsuarioCommandValidator : AbstractValidator<AddGrupoUsuarioCommand>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
-        public AddGrupoUsuarioValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
+        public AddGrupoUsuarioCommandValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
         {
             _grupoUsuarioRepository = grupoUsuarioRepository;
 

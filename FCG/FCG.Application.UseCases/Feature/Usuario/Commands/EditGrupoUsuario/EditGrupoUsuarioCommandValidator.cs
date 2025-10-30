@@ -6,10 +6,10 @@ using System;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.EditGrupoUsuario
 {
-    public sealed class EditGrupoUsuarioValidator : AbstractValidator<EditGrupoUsuarioCommand>
+    public sealed class EditGrupoUsuarioCommandValidator : AbstractValidator<EditGrupoUsuarioCommand>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
-        public EditGrupoUsuarioValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
+        public EditGrupoUsuarioCommandValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
         {
             _grupoUsuarioRepository = grupoUsuarioRepository;
 

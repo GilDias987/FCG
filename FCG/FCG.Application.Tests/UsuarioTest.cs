@@ -79,7 +79,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new LoginUsuarioCommand { Email = email, Senha = senha };
-            var validator = new LoginUsuarioValidator(_usuarioRepositoryMock.Object);
+            var validator = new LoginUsuarioCommandValidator(_usuarioRepositoryMock.Object);
 
             var result = await validator.ValidateAsync(command);
 
@@ -94,7 +94,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new LoginUsuarioCommand { Email = "gil@fiap.com.br", Senha = "Carlos@987" };
-            var validator = new LoginUsuarioValidator(_usuarioRepositoryMock.Object);
+            var validator = new LoginUsuarioCommandValidator(_usuarioRepositoryMock.Object);
 
             var result = await validator.ValidateAsync(command);
 

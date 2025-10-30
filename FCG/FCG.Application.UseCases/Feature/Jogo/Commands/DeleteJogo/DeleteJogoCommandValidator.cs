@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteJogo
 {
-    public sealed class DeleteJogoValidator : AbstractValidator<DeleteJogoCommand>
+    public sealed class DeleteJogoCommandValidator : AbstractValidator<DeleteJogoCommand>
     {
 
         private readonly IJogoRepository _jogoRepository;
-        public DeleteJogoValidator(IJogoRepository jogoRepository)
+        public DeleteJogoCommandValidator(IJogoRepository jogoRepository)
         {
             _jogoRepository = jogoRepository;
 
