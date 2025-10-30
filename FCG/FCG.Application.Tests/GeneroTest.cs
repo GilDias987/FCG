@@ -63,7 +63,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var oGenero   = new AddGeneroCommand { Titulo = "Ação" };
-            var validator = new AddGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new AddGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
 
@@ -85,7 +85,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new AddGeneroCommand { Titulo = "" };
-            var validator = new AddGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new AddGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock.Setup(r => r.ExistsByAsync(It.IsAny<Expression<Func<Genero, bool>>>()))
@@ -104,7 +104,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new AddGeneroCommand { Titulo = "Ação" };
-            var validator = new AddGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new AddGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock.Setup(r => r.ExistsByAsync(It.IsAny<Expression<Func<Genero, bool>>>()))
@@ -140,7 +140,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command   = new EditGeneroCommand { Titulo = "" };
-            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -159,11 +159,11 @@ namespace FCG.Application.Tests
         }
 
         [Fact(DisplayName = "Editar gênero de jogo não válido com título existente.")]
-        public async Task EditGeneroComNomeExistente()
+        public async Task EditGeneroComTituloExistente()
         {
             // Arrange
             var command   = new EditGeneroCommand { Titulo = "" };
-            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act 
             _generoRepositoryMock
@@ -186,7 +186,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new EditGeneroCommand { Titulo = "Ação" };
-            var validator = new EditGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new EditGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
 
@@ -230,7 +230,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new DeleteGeneroCommand { Id = 1 };
-            var validator = new DeleteGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new DeleteGeneroCommandValidator(_generoRepositoryMock.Object);
 
             // Act
 
@@ -252,7 +252,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var command = new DeleteGeneroCommand { Id = 1 };
-            var validator = new DeleteGeneroValidator(_generoRepositoryMock.Object);
+            var validator = new DeleteGeneroCommandValidator(_generoRepositoryMock.Object);
             var genero = new Genero("Ação");
 
             // Act
