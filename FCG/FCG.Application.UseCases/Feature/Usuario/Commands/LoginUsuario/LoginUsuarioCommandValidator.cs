@@ -3,10 +3,10 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.LoginUsuario
 {
-    public sealed class LoginUsuarioValidator : AbstractValidator<LoginUsuarioCommand>
+    public sealed class LoginUsuarioCommandValidator : AbstractValidator<LoginUsuarioCommand>
     {
         private readonly IUsuarioRepository _usuarioRepository;
-        public LoginUsuarioValidator(IUsuarioRepository usuarioRepository)
+        public LoginUsuarioCommandValidator(IUsuarioRepository usuarioRepository)
         {
             _usuarioRepository = usuarioRepository;
 

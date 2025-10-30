@@ -5,10 +5,10 @@ using FCG.ApplicationCore.Interface.Repository;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Commands.DeleteGrupoUsuario
 {
-    public sealed class DeleteGrupoUsuarioValidator : AbstractValidator<DeleteGrupoUsuarioCommand>
+    public sealed class DeleteGrupoUsuarioCommandValidator : AbstractValidator<DeleteGrupoUsuarioCommand>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
-        public DeleteGrupoUsuarioValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
+        public DeleteGrupoUsuarioCommandValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
         {
             _grupoUsuarioRepository = grupoUsuarioRepository;
 
