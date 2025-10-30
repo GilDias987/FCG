@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.DeleteGenero
 {
-    public sealed class DeleteGeneroValidator : AbstractValidator<DeleteGeneroCommand>
+    public sealed class DeleteGeneroCommandValidator : AbstractValidator<DeleteGeneroCommand>
     {
         private readonly IGeneroRepository _generoRepository;
-        public DeleteGeneroValidator(IGeneroRepository generoRepository)
+        public DeleteGeneroCommandValidator(IGeneroRepository generoRepository)
         {
             _generoRepository = generoRepository;
 

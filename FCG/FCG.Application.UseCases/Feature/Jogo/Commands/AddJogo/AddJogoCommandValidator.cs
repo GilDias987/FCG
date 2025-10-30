@@ -3,11 +3,11 @@ using FluentValidation;
 
 namespace FCG.Application.UseCases.Feature.Jogo.Commands.AddJogo
 {
-    public sealed class AddJogoValidator : AbstractValidator<AddJogoCommand>
+    public sealed class AddJogoCommandValidator : AbstractValidator<AddJogoCommand>
     {
         private readonly IGeneroRepository _generoRepository;
         private readonly IPlataformaRepository _plataformaRepository;
-        public AddJogoValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository)
+        public AddJogoCommandValidator(IGeneroRepository generoRepository, IPlataformaRepository plataformaRepository)
         {
             _generoRepository = generoRepository;
             _plataformaRepository = plataformaRepository;
