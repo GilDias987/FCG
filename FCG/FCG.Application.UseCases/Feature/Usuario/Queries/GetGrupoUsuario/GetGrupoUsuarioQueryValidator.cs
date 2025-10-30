@@ -5,11 +5,11 @@ using FCG.ApplicationCore.Interface.Repository;
 
 namespace FCG.Application.UseCases.Feature.Usuario.Queries.GetGrupoUsuario
 {
-    public sealed class GetGrupoUsuarioValidator
+    public sealed class GetGrupoUsuarioQueryValidator
     : AbstractValidator<GetGrupoUsuarioQuery>
     {
         private readonly IGrupoUsuarioRepository _grupoUsuarioRepository;
-        public GetGrupoUsuarioValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
+        public GetGrupoUsuarioQueryValidator(IGrupoUsuarioRepository grupoUsuarioRepository)
         {
             _grupoUsuarioRepository = grupoUsuarioRepository;
 

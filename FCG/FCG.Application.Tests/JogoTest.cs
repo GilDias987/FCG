@@ -69,7 +69,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand {Titulo = "", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -94,7 +94,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200.555m, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -119,7 +119,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -144,7 +144,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -169,7 +169,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 101, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -194,7 +194,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50.333m, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -219,7 +219,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var usuario = new AddJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new AddJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
+            var validator = new AddJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object);
 
             // Act
             _generoRepositoryMock
@@ -260,7 +260,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
 
             // Act
             _jogoRepositoryMock
@@ -288,7 +288,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
             
             // Act
@@ -317,7 +317,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200.555m, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -347,7 +347,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -377,7 +377,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -407,7 +407,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 101, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -437,7 +437,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50.333m, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -467,7 +467,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new EditJogoCommand { Titulo = "Mario", Descricao = "Jogo de Aventura", Preco = 200, Desconto = 50, GeneroId = 1, PlataformaId = 1 };
-            var validator = new EditJogoValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
+            var validator = new EditJogoCommandValidator(_generoRepositoryMock.Object, _plataformaRepositoryMock.Object, _jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -517,7 +517,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var grupoUsuaro = new DeleteJogoCommand { Id = 1 };
-            var validator = new DeleteJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new DeleteJogoCommandValidator(_jogoRepositoryMock.Object);
 
             // Act
             _jogoRepositoryMock
@@ -538,7 +538,7 @@ namespace FCG.Application.Tests
             // Arrange
             // Arrange
             var grupoUsuaro = new DeleteJogoCommand { Id = 1 };
-            var validator = new DeleteJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new DeleteJogoCommandValidator(_jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
             // Act
             _jogoRepositoryMock
@@ -579,7 +579,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10 };
-            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new VincularDescontoJogoCommandValidator(_jogoRepositoryMock.Object);
 
             // Act
             _jogoRepositoryMock
@@ -599,7 +599,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 101 };
-            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new VincularDescontoJogoCommandValidator(_jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -621,7 +621,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10.333m };
-            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new VincularDescontoJogoCommandValidator(_jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
@@ -643,7 +643,7 @@ namespace FCG.Application.Tests
         {
             // Arrange
             var jogo = new VincularDescontoJogoCommand { Id = 1, Desconto = 10 };
-            var validator = new VincularDescontoJogoValidator(_jogoRepositoryMock.Object);
+            var validator = new VincularDescontoJogoCommandValidator(_jogoRepositoryMock.Object);
             var objJogo = new Jogo("Mario", "Jogo de Aventura", 200, 50, 1, 1);
 
             // Act
