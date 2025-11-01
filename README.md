@@ -8,7 +8,7 @@ O **Fiap Cloud Games (FCG)** é uma plataforma inovadora de venda de jogos em nu
 
 ## 1 - Funcionalidades <a name="features"></a>
 
-O **FCG** possui diversas funcionalidades, que podem ser categorizadas com base em cada perfil de usuário do sistema.
+O **FCG** possui diversas funcionalidades, que podem ser categorizadas com base em cada perfil: **Usuário** e **Administrador** do sistema.
 
 ### 1.1 - Cadastro de usuários:
 
