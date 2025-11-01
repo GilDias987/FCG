@@ -21,7 +21,7 @@ A arquitetura será dividida em quatro camadas principais:
 
 - Domain (Domínio): O coração da aplicação. Contém as entidades, interfaces e regras de negócio.
 - Application (Aplicação): Orquestra o fluxo de dados e interage com as camadas de domínio e infraestrutura. Contém os casos de uso, DTOs e as interfaces de repositório.
-- Infrastructure (Infraestrutura): Lida com detalhes externos, como banco de dados (Entity Framework Core), sistema de arquivos, e-mails, etc. É onde a lógica de persistência e auditoria será implementada.
+- Infrastructure (Infraestrutura): Lida com detalhes externos, como banco de dados (Entity Framework Core), sistema de arquivos, e-mails, etc. É onde a lógica de persistência será implementada.
 - API (Camada de Apresentação): A camada de entrada da aplicação. Utiliza a Controllers API do .NET para expor as informações.
 
 ```bash
