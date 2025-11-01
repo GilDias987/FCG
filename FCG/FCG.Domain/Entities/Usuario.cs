@@ -18,10 +18,12 @@ namespace FCG.Domain.Entities
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
+        #region Construtor EF
         public Usuario()
         {
 
         }
+        #endregion
 
         public Usuario(string nome, Email email, Senha senha, int grupoUsuarioId)
         {

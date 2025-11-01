@@ -19,7 +19,6 @@ namespace FCG.WebAPI.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class JogoController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -35,6 +34,7 @@ namespace FCG.WebAPI.Controllers
         /// <param name="addJogoCommand"></param>
         /// <returns></returns>
         [HttpPost("Incluir")]
+        [Authorize(Policy = "ADMINISTRADOR")]
         public async Task<IActionResult> IncluirJogo(AddJogoCommand addJogoCommand)
         {
             var jogo = await _mediator.Send(addJogoCommand);
@@ -48,6 +48,7 @@ namespace FCG.WebAPI.Controllers
         /// <param name="editJogoCommand"></param>
         /// <returns></returns>
         [HttpPut("Alterar")]
+        [Authorize(Policy = "ADMINISTRADOR")]
         public async Task<IActionResult> AlterarJogo([FromBody] EditJogoCommand editJogoCommand)
         {
             var jogo = await _mediator.Send(editJogoCommand);
@@ -61,6 +62,7 @@ namespace FCG.WebAPI.Controllers
         /// <param name="vincularDescontoJogoCommand"></param>
         /// <returns></returns>
         [HttpPut("VincularDesconto")]
+        [Authorize(Policy = "ADMINISTRADOR")]
         public async Task<IActionResult> VincularDesconto([FromBody] VincularDescontoJogoCommand vincularDescontoJogoCommand)
         {
             var jogo = await _mediator.Send(vincularDescontoJogoCommand);
@@ -74,6 +76,7 @@ namespace FCG.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("Deletar{id}")]
+        [Authorize(Policy = "ADMINISTRADOR")]
         public async Task<IActionResult> DeletarJogo(int id)
         {
             var isDeleted = await _mediator.Send(new DeleteJogoCommand { Id = id });
@@ -91,6 +94,7 @@ namespace FCG.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("Obter{id}")]
+        [Authorize]
         public async Task<IActionResult> ObterJogo(int id)
         {
             var jogo = await _mediator.Send(new GetJogoQuery { Id = id });
@@ -103,6 +107,7 @@ namespace FCG.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos")]
+        [Authorize]
         public async Task<IActionResult> ObterTodosJogos()
         {
             var jogo = await _mediator.Send(new GetAllJogoQuery());
