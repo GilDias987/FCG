@@ -51,8 +51,17 @@ namespace FCG.Application.UseCases.Feature.Usuario.Commands.AddUsuario
                 .EmailAddress()
                 .WithMessage("Informe um e-mail válido.")
                 .MustAsync(async (Email, cancellation) => !(await _usuarioRepository.VerificarSeExisteUsuarioEmailAsync(Email)) )
-                .WithMessage("Este e-mail já está registrado. Por favor, tente outro."); ;
+                .WithMessage("Este e-mail já está registrado. Por favor, tente outro.")
+                .Must((model, context) =>
+                   {
+                       if (!Regex.IsMatch(model.Email, @"@(fiap\.com\.br|alura\.com\.br|pm3\.com\.br)$"))
+                       {
+                           return false;
+                       }
 
+                       return true;
+                   })
+                   .WithMessage("E-mail deve pertencer aos domínios @fiap.com.br, @alura.com.br ou @pm3.com.br.");
         }
     }
 }
