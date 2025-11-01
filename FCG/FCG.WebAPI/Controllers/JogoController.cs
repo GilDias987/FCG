@@ -17,7 +17,7 @@ namespace FCG.WebAPI.Controllers
     /// <summary>
     /// Usuário
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]")] 
     [ApiController]
     public class JogoController : ControllerBase
     {
