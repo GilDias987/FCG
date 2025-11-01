@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FCG.WebAPI.Controllers
 {
     //https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400
-
+     
     /// <summary>
     /// Usuário
     /// </summary>
