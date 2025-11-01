@@ -38,7 +38,7 @@ números, letras e caracteres especiais).
 - [SQL Server](https://www.microsoft.com/pt-br/sql-server)
 - [Azure](https://azure.microsoft.com/)
 - [Swagger](https://swagger.io/)
-- [XUnit](https://xunit.net/)
+- [xUnit.Net](https://xunit.net/)
 
 ## 3 - Estrutura do Projeto <a name="structure"></a>
 A arquitetura será dividida em quatro camadas principais:
