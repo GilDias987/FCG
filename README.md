@@ -33,7 +33,7 @@ números, letras e caracteres especiais).
 ## 2 - Tecnologias e Plataformas <a name="tech"></a>
 
 - [Visual Studio](https://visualstudio.microsoft.com/pt-br/)
-- [.NET 9](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0)
 - [EF Core](https://learn.microsoft.com/pt-br/ef/core/)
 - [SQL Server](https://www.microsoft.com/pt-br/sql-server)
 - [Azure](https://azure.microsoft.com/)
