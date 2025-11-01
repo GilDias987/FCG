@@ -108,14 +108,14 @@ Para se autenticar, vá para o endpoint '/api/Autenticacao/Login' e use as crede
 ```json
 {
   "email": "administrador@fiap.com.br",
-  "password": "@Adm123!"
+  "senha": "@Adm123!"
 }
 ```
 ou
 ```json
 {
   "email": "usuario@fiap.com.br",
-  "password": "@Usu123!"
+  "senha": "@Usu123!"
 }
 ```
 Obs: Essas credenciais são criadas automaticamente.
