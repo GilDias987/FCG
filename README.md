@@ -6,6 +6,23 @@ O **Fiap Cloud Games (FCG)** é uma plataforma inovadora de venda de jogos em nu
 
 ## Sumário
 
+## 1 - Funcionalidades <a name="features"></a>
+
+O **FCG** possui diversas funcionalidades, que podem ser categorizadas com base em cada perfil de usuário do sistema.
+
+### 1.1 - Cadastro de usuários:
+
+- Identificação do cliente por nome, e-mail e senha.
+- Validar formato de e-mail e senha segura (mínimo de 8 caracteres com
+números, letras e caracteres especiais).
+
+### 1.2 - Autenticação e Autorização:
+
+- Implementar autenticação via token JWT.
+- Ter dois níveis de acessos:
+  - **Usuário** – acesso a plataforma e biblioteca de jogos.
+  - **Administrador** – é possível cadastrar jogos, administrar usuários e criar promoções.
+
 ## Tecnologias e Plataformas <a name="tech"></a>
 
 - [Visual Studio](https://visualstudio.microsoft.com/pt-br/)
