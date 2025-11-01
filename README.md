@@ -71,7 +71,7 @@ dotnet run
 
 2. Ao rodar a API, o Visual Studio utiliza as portas configuradas no arquivo launchSettings.json (localizado dentro da pasta Properties do projeto). Geralmente, ele define uma porta HTTP e uma HTTPS (ex: http://localhost:5122 e https://localhost:7258). O URL que é aberto no navegador é baseado nesta configuração.
  
-Para se autenticar, vá para o endpoint '/api/auth/login' e use as credenciais abaixo:
+Para se autenticar, vá para o endpoint '/api/Autenticacao/Login' e use as credenciais abaixo:
 
 ```json
 {
