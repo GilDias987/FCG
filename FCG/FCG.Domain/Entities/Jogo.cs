@@ -20,13 +20,15 @@ namespace FCG.Domain.Entities
         public ICollection<UsuarioJogo> UsuarioJogos { get; set; }
         #endregion
 
+        #region Construtor EF
+        public Jogo()
+        {
+        }
+        #endregion
+
         private void ValidarDesconto(decimal desconto)
         {
             Guard.Against<DomainException>(desconto < 0 || desconto > 100, "O percentual do desconto não pode ser negativo ou maior que 100");
-        }
-
-        public Jogo()
-        { 
         }
 
         public Jogo(string titulo, string descricao, decimal? preco, decimal? desconto, int generoId, int plataformaId)
