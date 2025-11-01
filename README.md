@@ -6,6 +6,13 @@ O **Fiap Cloud Games (FCG)** é uma plataforma inovadora de venda de jogos em nu
 
 ## Sumário
 
+1. [Funcionalidades](#features)
+2. [Tecnologias e Plataformas](#tech)
+3. [Estrutura do Projeto](#structure)
+4. [Desenvolvimento](#dev)
+5. [Testes](#tests)
+6. [Contribuições](#contributions)
+
 ## 1 - Funcionalidades <a name="features"></a>
 
 O **FCG** possui diversas funcionalidades, que podem ser categorizadas com base em cada perfil: **Usuário** e **Administrador** do sistema.
@@ -23,7 +30,7 @@ números, letras e caracteres especiais).
   - **Usuário** – acesso a plataforma e biblioteca de jogos.
   - **Administrador** – é possível cadastrar jogos, administrar usuários e criar promoções.
 
-## Tecnologias e Plataformas <a name="tech"></a>
+## 2 - Tecnologias e Plataformas <a name="tech"></a>
 
 - [Visual Studio](https://visualstudio.microsoft.com/pt-br/)
 - [.NET 9](https://dotnet.microsoft.com/download/dotnet/9.0)
@@ -33,7 +40,7 @@ números, letras e caracteres especiais).
 - [Swagger](https://swagger.io/)
 - [XUnit](https://xunit.net/)
 
-## Estrutura do Projeto
+## 3 - Estrutura do Projeto <a name="structure"></a>
 A arquitetura será dividida em quatro camadas principais:
 
 - Domain (Domínio): O coração da aplicação. Contém as entidades, interfaces e regras de negócio.
@@ -63,7 +70,7 @@ A arquitetura será dividida em quatro camadas principais:
          FCG.Domain.tests
 ```
 
-## Desenvolvimento <a name="dev"></a>
+## 4 - Desenvolvimento <a name="dev"></a>
 
 Para rodar o sistema na sua máquina, siga os passos abaixo:
 
@@ -113,7 +120,7 @@ ou
 ```
 Obs: Essas credenciais são criadas automaticamente.
 
-## Testes <a name="tech"></a>
+## 5 - Testes <a name="tests"></a>
 
 - Para rodar os testes, utilize o **Test Explorer** do Visual Studio ou execute via terminal:
 
@@ -121,7 +128,7 @@ Obs: Essas credenciais são criadas automaticamente.
 dotnet test
 ```
 
-## Contribuições <a name="contributions"></a>
+## 6 - Contribuições <a name="contributions"></a>
 
 Qualquer contribuição é bem-vinda!
 
