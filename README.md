@@ -25,17 +25,25 @@ A arquitetura será dividida em quatro camadas principais:
 - API (Camada de Apresentação): A camada de entrada da aplicação. Utiliza a Controllers API do .NET para expor as informações.
 
 ```bash
-+ document
-  TC NETT - Fase 1
-+ src
-  + FCG.sln
-    FCG.Application.csproj
-    FCG.Domain.csproj
-    FCG.Infrastructure.csproj
-    FCG.WebAPI.csproj
-+ tests
-  FCG.Application.tests
-  FCG.Domain.tests
+:: FCG.sln
+   + document
+     TC NETT - Fase 1
+   + src
+     + Application
+         FCG.Application.Dto.csproj
+         FCG.Application.Interface.csproj
+         FCG.Application.UseCases.csproj
+     + Domain
+         FCG.Domain.csproj
+     + Infrastructure
+         FCG.Infrastructure.csproj
+     + Services
+         FCG.WebAPI.csproj
+   + tests
+     + Application
+         FCG.Application.tests
+     + Domain
+         FCG.Domain.tests
 ```
 
 ## Desenvolvimento <a name="dev"></a>
