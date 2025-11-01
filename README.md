@@ -45,7 +45,7 @@ Para rodar o sistema na sua máquina, siga os passos abaixo:
 1. Clone o projeto para sua máquina
 
 ```bash
-git clone -b develop https://github.com/FIAP/NET-CACHE.git
+git clone -b develop https://github.com/GilDias987/FCG.git
 ```
 
 Executar a **Migration** para criar ou atualizar as tabelas de banco de dados.
