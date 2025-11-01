@@ -12,7 +12,7 @@ O **FCG** possui diversas funcionalidades, que podem ser categorizadas com base 
 
 ### 1.1 - Cadastro de usuários:
 
-- Identificação do cliente por nome, e-mail e senha.
+- Identificação por nome, e-mail e senha.
 - Validar formato de e-mail e senha segura (mínimo de 8 caracteres com
 números, letras e caracteres especiais).
 
