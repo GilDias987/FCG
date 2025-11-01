@@ -2,8 +2,7 @@
 
 ## Sobre o Projeto
 
-**FCG** FIAP Cloud Games é uma plataforma de venda de jogos digitais e gestão de servidores para partidas online. 
-O projeto visa proporcionar aos alunos uma vivência prática e integrada no ciclo de vida de criação, implantação (deployment) e utilização de jogos hospedados em computação em nuvem.
+O **Fiap Cloud Games (FCG)** é uma plataforma inovadora de venda de jogos em nuvem que nasceu dentro do ecossistema educacional da FIAP (Faculdade de Informática e Administração Paulista). O projeto tem como principal objetivo proporcionar aos alunos uma experiência prática e integrada, cobrindo o desenvolvimento, a implementação (deployment) e o consumo de jogos que são hospedados em ambientes cloud.
 
 ## Sumário
 
