@@ -10,7 +10,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FCG.WebAPI.Controllers
+namespace FCG.WebAPI.Controllers 
 {
     //https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/400
      
