@@ -9,6 +9,7 @@ Relatório de Entrega da Fase 1:
 
     ◦ Link da documentação.
         https://miro.com/app/board/uXjVJxye-Vw=/
+        https://github.com/GilDias987/FCG/blob/main/FCG%20-%20Documenta%C3%A7%C3%A3o.txt
 
     ◦ Link do(s) repositório(s).
         https://github.com/GilDias987/FCG
