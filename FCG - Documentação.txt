@@ -1,0 +1,90 @@
+Fiap Cloud Games (FCG)
+
+FASE 1:
+
+A FIAP Cloud Games (FCG) será uma plataforma de venda de jogos digitais e gestão de servidores para partidas online. Nesta primeira fase, você desenvolverá um serviço de cadastro de usuários e biblioteca de jogos adquiridos que servirá de base para as próximas fases do projeto. Este desafio foi estruturado para aplicar os conhecimentos adquiridos nas disciplinas da fase. 
+
+Desafio
+
+A FIAP decidiu lançar uma plataforma de games voltados para a educação de tecnologia. Ela possui a ideia de como o projeto deve funcionar e decidiu quebrá-lo em quatro fases para que o lançamento da FCG seja gradual e melhorado durante todo o processo de construção.
+
+O objetivo desta fase é criar uma API REST em .NET 8 para gerenciar usuários e seus jogos adquiridos. 
+
+O projeto precisa garantir persistência de dados, qualidade do software e boas práticas de desenvolvimento, preparando a base para futuras funcionalidades como matchmaking e gerenciamento de servidores.
+
+Com esse MVP, a FIAP conseguirá seguir com o projeto avaliando o que deve ser melhorado e o que pode ser acrescentado para que o serviço seja robusto e suporte todos os alunos e alunas da FIAP, Alura e PM3. 
+
+REQUISITOS:
+
+Requisitos Funcionais (Obrigatórias)
+
+    1. Cadastro de usuários 
+        1. Identificação do cliente por nome, e-mail e senha. 
+        2. Validar formato de e-mail e senha segura (mínimo de 8 caracteres com números, letras e caracteres especiais). 
+    2. Autenticação e Autorização 
+        1. Implementar autenticação via token JWT. 
+        2. Ter dois níveis de acesso: 
+            1. Usuário – acesso à plataforma e biblioteca de jogos. 
+            2. Administrador – é possível cadastrar jogos, administrar usuários e criar promoções. 
+    3. Arquitetura 
+        1. Para essa fase, como se trata de um MVP, é necessário utilizar um monólito para facilitar o desenvolvimento ágil. 
+
+Requisitos Técnicos
+    • Persistência de Dados (Entity Framework Core/MongoDB) 
+        1. Utilizar Entity Framework Core para gerenciar os modelos de usuários e jogos. 
+        2. Aplicar migrations para a criação do banco de dados. 
+        3. (Opcional) Utilizar MongoDB para persistência dos dados. 
+        4. (Opcional) Utilizar Dapper para consultas de alta performance, caso necessário. 
+    • Desenvolvimento de API com .NET 8 
+        1. Criar a API seguindo o padrão Minimal API ou Controllers MVC. 
+        2. Implementar Middleware para tratamento de erros e logs estruturados. 
+        3. Adicionar documentação com Swagger para expor os endpoints da API. 
+        4. (Opcional) Utilizar GraphQL para consulta avançada de jogos, permitindo filtragens dinâmicas. 
+    • Qualidade de Software 
+        1. Criar testes unitários para validar as principais regras de negócio. 
+        2. Aplicar Test-Driven Development (TDD) ou Behavior-Driven Development (BDD) em, pelo menos, um dos módulos do projeto. Domain-Driven Design (DDD): 
+        3. Modelar o domínio do projeto utilizando Event Storming para mapear os fluxos de usuários e jogos. 
+        4. (Opcional) Aplicar Domain Storytelling para representar cenários de interação com a API. 
+        5. Seguir os princípios de DDD na organização das entidades e regras de negócio.
+
+Metas realizadas
+    • [x] Gerenciamento de usuários.
+    • [x] Gerenciamento de jogos.
+    • [x] Gerenciamento de gênero dos jogos (Extra).
+    • [x] Gerenciamento de plataforma dos jogos (Extra).
+    • [x] Autenticação e Autorização de usuários com JWT.
+    • Níveis de acesso (Administrador e Usuário).
+    • [x] Documentação da API com Swagger.
+    • [x] Gerenciamento e aplicação de promoções.
+    • [x] Testes.
+
+Entregáveis da Fase 1
+    • Vídeo de até 15 minutos demonstrando todos os requisitos. Ele pode ser em grupo ou individual (um integrante do grupo grava ou é possível se dividir entre si e apresentar). 
+        ◦ O projeto pode rodar localmente, apresentando os requisitos anteriores. 
+    • (Opcional) Se o MongoDB for utilizado, será necessário mostrar a estrutura do banco. 
+    • Documentação DDD (Miro ou equivalente), com: 
+        ◦ Event Storming dos fluxos: 
+            ▪ Criação de jogos. 
+            ▪ Criação de usuários. 
+        ◦ Diagramas conforme apresentado na disciplina de DDD. 
+    • Código-fonte no repositório (público ou privado), incluindo: 
+        ◦ APIs conforme requisitos. 
+        ◦ Testes escritos. 
+        ◦ README.md completo com instruções de uso e objetivos. 
+
+    • Relatório de entrega (PDF ou TXT) – esse arquivo deve ser postado na data da entrega, contendo: 
+        ◦ Nome do grupo. 
+Grupo 64
+
+        ◦ Participantes e usernames no Discord.
+RM367747 – Alexandre Araújo da Silva  / AlexandreAraujo
+RM367560 – Josegil Dias Frota Figueira / gildiasfrota 
+
+        ◦ Link da documentação. 
+https://miro.com/app/board/uXjVJxye-Vw=/
+
+        ◦ Link do(s) repositório(s). 
+https://github.com/GilDias987/FCG
+
+        ◦ Link do vídeo salvo no Youtube ou lugar de sua preferência. 
+https://www.youtube.com/watch?v=dgrRPfZDjUI
